@@ -36,7 +36,7 @@ Page({
       name: 'sum',
       data: {
         a: 1,
-        b: 2
+        b: 4
       },
       success: res => {
         wx.showToast({
