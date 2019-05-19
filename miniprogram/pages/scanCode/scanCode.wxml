@@ -1,0 +1,3 @@
+<!--pages/scanCode/scanCode.wxml-->
+<van-button type="primary" bind:click = "onScanCode">扫码加书</van-button>
+<text>pages/scanCode/scanCode.wxml</text>

@@ -1,0 +1,3 @@
+<!--pages/mainpage/mainpage.wxml-->
+<button bindtap="onSignUp">点击报名</button>
+<text>pages/mainpage/mainpage.wxml</text>

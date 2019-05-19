@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/mainpage/mainpage",    
+    "pages/scanCode/scanCode",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -13,8 +15,21 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "私房书柜",
     "navigationBarTextStyle": "black"
   },
+
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/mainpage/mainpage",
+      "text": "我的藏书"
+    },
+    {
+      "pagePath": "pages/scanCode/scanCode",
+      "text": "扫码加书"
+    }
+    ]
+  },
+
   "sitemapLocation": "sitemap.json"
 }
