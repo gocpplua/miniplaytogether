@@ -13,3 +13,5 @@
 <van-icon size="750rpx" name="add-o" />
 
 <van-button type="primary">上传图片</van-button>
+<van-button type="primary" bind:click = "onInsertTestPic">插入test环境下pic集合的记录</van-button>
+<van-button type="primary" bind:click = "onGetTestPic">获取test环境下pic集合的记录</van-button>
