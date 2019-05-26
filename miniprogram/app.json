@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/publish/publish",
     "pages/mainpage/mainpage",    
     "pages/scanCode/scanCode",
     "pages/index/index",
@@ -27,6 +28,10 @@
     {
       "pagePath": "pages/scanCode/scanCode",
       "text": "扫码加书"
+    },
+    {
+      "pagePath": "pages/publish/publish",
+      "text": "发布活动"
     }
     ]
   },

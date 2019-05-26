@@ -1,0 +1,15 @@
+<!--pages/publish/publish.wxml-->
+
+<view class='page'>
+<!-- 规定为 750rpx=屏幕宽度 -->
+  <image 
+    bindtap = "onPublishAddPic"
+          style="width: 750rpx; height: 200px; background-color: #eeeeee;" 
+          mode="scaleToFill"
+          src= "{{ strPublishAddPic }}">
+        </image>
+</view>
+
+<van-icon size="750rpx" name="add-o" />
+
+<van-button type="primary">上传图片</van-button>
