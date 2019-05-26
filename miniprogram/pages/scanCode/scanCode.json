@@ -1,5 +1,14 @@
 {
   "usingComponents": {
-    "van-button": "../../vant/button/index"
+    "van-button": "../../vant/button/index",
+    "van-cell":"../../vant/cell/index",
+    "van-cell-group":"../../vant/cell-group/index",
+    "van-icon":"../../vant/icon",
+    "van-row": "../../vant/row",
+    "van-col": "../../vant/col",
+    "van-popup":"../../vant/popup",
+    "van-transition": "../../vant/transition/index",
+    "van-checkbox": "../../vant/checkbox/index",
+    "van-checkbox-group": "../../vant/checkbox-group/index"
   }
 }

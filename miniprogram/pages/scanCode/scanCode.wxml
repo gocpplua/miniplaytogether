@@ -1,3 +1,27 @@
 <!--pages/scanCode/scanCode.wxml-->
 <van-button type="primary" bind:click = "onScanCode">扫码加书</van-button>
 <text>pages/scanCode/scanCode.wxml</text>
+<van-button plain type="danger">朴素按钮</van-button>
+<van-cell-group>
+  <van-cell title="单元格" value="内容" />
+  <van-cell title="单元格" value="内容" label="描述信息" />
+</van-cell-group>
+<van-icon name="close" />
+<van-icon name="location-o" />
+<van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png"></van-icon>
+<van-icon name="chat" info="9+" />
+
+<van-row gutter="20">
+  <van-col span="8">span: 8</van-col>
+  <van-col span="8">span: 8</van-col>
+  <van-col span="8">span: 8</van-col>
+</van-row>
+
+<van-popup show="{{ show }}" overlay="true" bind:close="onClose">内容内容</van-popup>
+<van-button plain type="danger" bind:click = "onPopup">点击显示蒙层</van-button>
+
+<van-button plain type="danger" bind:click = "onTransitionShow">点击显示动画</van-button>
+<van-button plain type="danger" bind:click = "onTransitionClose">点击关闭动画</van-button>
+<van-transition  show="{{ transitionShow }}" name="fade-up" >动画</van-transition>
+
+<van-checkbox value="{{ checked }}" bind:change="onChange">复选框</van-checkbox>

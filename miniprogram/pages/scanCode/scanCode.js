@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    show: false,
+    transitionShow:false
   },
 
   /**
@@ -104,5 +105,28 @@ Page({
         console.log(err)
       }
     })
-  }
+  },
+
+onClose() {
+    this.setData({ show: false });
+    console.log("蒙层关闭")
+  },
+
+  onPopup(){
+    this.setData({ show: true });
+    console.log("蒙层显示")
+  },
+
+  onTransitionShow() {
+    this.setData({ transitionShow: true });
+    console.log("动画显示")
+  },
+
+  onTransitionClose() {
+    this.setData({ transitionShow: false });
+    console.log("动画关闭")
+  },
+  
+
+
 })
