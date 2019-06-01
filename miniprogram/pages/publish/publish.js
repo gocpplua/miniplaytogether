@@ -14,11 +14,11 @@ Page({
     Avatar: defaultAvatar,
     Avatars: [
       {
-        id: defaultAvatar
+        id: defaultAvatar,unique:"unique_1"
       },
       {
-        id: defaultAvatar
-      },
+        id: defaultAvatar, unique: "unique_2"
+      }, 
     ]
   },
 

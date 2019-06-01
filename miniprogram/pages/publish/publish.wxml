@@ -21,9 +21,9 @@
 <van-icon name="{{ Avatar }}" />
 <van-button type="primary" bind:click = "onResetUserinfoAvatar">恢复默认头像</van-button>
 
-<view wx:for="{{Avatars}}" wx:for-index="idx" wx:for-item="itemName">
+<view wx:for="{{Avatars}}" wx:key="unique" wx:for-index="idx" wx:for-item="itemName">
   {{idx}}: {{itemName.id}}
 </view>
-<view wx:for="{{Avatars}}" wx:for-index="idx" wx:for-item="itemName">
+<view wx:for="{{Avatars}}" wx:key="unique" wx:for-index="idx" wx:for-item="itemName">
   <van-icon name="{{ itemName.id }}" />
 </view>
