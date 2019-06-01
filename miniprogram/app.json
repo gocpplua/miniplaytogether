@@ -22,7 +22,7 @@
 
   "tabBar": {
     "list": [{
-      "pagePath": "pages/mainpage/mainpage",
+      "pagePath": "pages/index/index",
       "text": "我的藏书"
     },
     {

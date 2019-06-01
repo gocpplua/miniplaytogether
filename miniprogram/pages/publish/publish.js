@@ -3,13 +3,15 @@ const testDB = wx.cloud.database({
   env: 'test-52nlc'
 })
 const pic = testDB.collection('pic')
+const defaultAvatar = "https://b.yzcdn.cn/vant/icon-demo-1126.png"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    strPublishAddPic: "../../images/create-collection.png"
+    strPublishAddPic: "../../images/create-collection.png",
+    Avatar: defaultAvatar
   },
 
   /**
@@ -163,4 +165,25 @@ Page({
     })
   },
 
+  onGetUserinfoAvatar:function()
+  {
+    console.log("onGetUserinfoAvatar")
+  },
+
+  bindGetUserInfo(e) {
+    var that = this
+    console.log(e.detail.userInfo)
+    console.log(e.detail.userInfo.avatarUrl)
+    that.setData(
+      {
+        Avatar: e.detail.userInfo.avatarUrl
+      }
+    )
+  },
+
+  onResetUserinfoAvatar:function(){
+    this.setData({
+      Avatar: defaultAvatar
+    })
+  }
 })
