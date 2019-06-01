@@ -11,7 +11,15 @@ Page({
    */
   data: {
     strPublishAddPic: "../../images/create-collection.png",
-    Avatar: defaultAvatar
+    Avatar: defaultAvatar,
+    Avatars: [
+      {
+        id: defaultAvatar
+      },
+      {
+        id: defaultAvatar
+      },
+    ]
   },
 
   /**
