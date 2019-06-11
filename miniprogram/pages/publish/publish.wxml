@@ -27,3 +27,5 @@
 <view wx:for="{{Avatars}}" wx:key="unique" wx:for-index="idx" wx:for-item="itemName">
   <van-icon name="{{ itemName.id }}" />
 </view>
+
+<van-button type="primary" bind:click = "onInsertGeoPoint">插入Geo.Point</van-button>

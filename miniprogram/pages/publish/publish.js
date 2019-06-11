@@ -3,6 +3,7 @@ const testDB = wx.cloud.database({
   env: 'test-52nlc'
 })
 const pic = testDB.collection('pic')
+const geo = testDB.collection('Geo')
 const defaultAvatar = "https://b.yzcdn.cn/vant/icon-demo-1126.png"
 Page({
 
@@ -192,6 +193,31 @@ Page({
   onResetUserinfoAvatar:function(){
     this.setData({
       Avatar: defaultAvatar
+    })
+  },
+
+  onInsertGeoPoint:function(){
+    //作者：geekape
+    //链接：https://juejin.im/post/5bbabb02e51d450e865838e4
+    //来源：掘金
+    geo.add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
+        description: "learn cloud database",
+        due: new Date("2018-09-01"),
+        tags: [
+          "cloud",
+          "database"
+        ],
+        // 为待办事项添加一个地理位置（113°E，23°N）
+        location: new testDB.Geo.Point(113, 23), //该对象上含有地理位置构造器:https://developers.weixin.qq.com/miniprogram/dev/wxcloud/reference-client-api/database/db.geo.html
+        done: false
+      },
+      success: function (res) {
+        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+        console.log(res + '成功插入')
+      }
     })
   }
 })
