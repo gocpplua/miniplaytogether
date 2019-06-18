@@ -29,6 +29,9 @@ Page({
       width: 50,
       height: 50
     }],
+
+    latitude:0,
+    longitude:0
   },
 
   /**
@@ -245,6 +248,29 @@ Page({
           }],
         })
       }
+    })
+  },
+
+  onOpenMap:function(){
+    console.log(this.data.latitude)
+    console.log(this.data.longitude)
+    wx.openLocation({
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+    })
+  },
+  onGetLocation:function(){
+    var that = this
+    wx.getLocation({
+      success: function(res) {
+        console.log(res)
+        console.log(res.latitude)
+        console.log(res.longitude)
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+      },
     })
   }
 })

@@ -31,3 +31,7 @@
 <van-button type="primary" bind:click = "onInsertGeoPoint">插入Geo.Point</van-button>
 <van-button type="primary" bind:click = "onGetGeoPoint">获取Geo.Point</van-button>
 <map id="map" longitude="113.324520" latitude="23.099994" scale="14" markers="{{markers}}"></map>
+<van-button type="primary" bind:click = "onOpenMap">打开地图</van-button>
+<van-button type="primary" bind:click = "onGetLocation">获取当前位置</van-button>
+
+
