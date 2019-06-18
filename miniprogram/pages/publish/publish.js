@@ -20,7 +20,15 @@ Page({
       {
         id: defaultAvatar, unique: "unique_2"
       }, 
-    ]
+    ],
+    markers: [{
+      iconPath: "../../images/location.png",
+      id: 0,
+      latitude: 23.099994,
+      longitude: 113.324520,
+      width: 50,
+      height: 50
+    }],
   },
 
   /**
@@ -217,6 +225,25 @@ Page({
       success: function (res) {
         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
         console.log(res + '成功插入')
+      }
+    })
+  },
+  onGetGeoPoint:function(){
+    var that = this
+    geo.get({
+      success: function (res) {
+        // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
+        console.log(res.data)
+        that.setData({
+          markers: [{
+            iconPath: "../../images/location.png",
+            id: 0,
+            latitude: 23.089994,
+            longitude: 113.324520,
+            width: 50,
+            height: 50
+          }],
+        })
       }
     })
   }
