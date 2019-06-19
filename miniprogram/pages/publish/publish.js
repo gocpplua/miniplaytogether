@@ -5,6 +5,10 @@ const testDB = wx.cloud.database({
 const pic = testDB.collection('pic')
 const geo = testDB.collection('Geo')
 const defaultAvatar = "https://b.yzcdn.cn/vant/icon-demo-1126.png"
+
+var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
+var qqmapsdk;
+
 Page({
 
   /**
@@ -38,7 +42,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    qqmapsdk = new QQMapWX({
+      key: '申请的key'
+    });
   },
 
   /**
@@ -272,5 +278,19 @@ Page({
         })
       },
     })
+  },
+  onQQMapLocation:function(){
+    qqmapsdk.search({
+      keyword: '酒店',
+      success: function (res) {
+        console.log(res);
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+    });
   }
 })

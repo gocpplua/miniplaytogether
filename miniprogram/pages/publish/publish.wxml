@@ -33,5 +33,6 @@
 <map id="map" longitude="113.324520" latitude="23.099994" scale="14" markers="{{markers}}"></map>
 <van-button type="primary" bind:click = "onOpenMap">打开地图</van-button>
 <van-button type="primary" bind:click = "onGetLocation">获取当前位置</van-button>
+<van-button type="primary" bind:click = "onQQMapLocation">获取腾讯地图位置</van-button>
 
 
