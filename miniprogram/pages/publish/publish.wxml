@@ -34,5 +34,7 @@
 <van-button type="primary" bind:click = "onOpenMap">打开地图</van-button>
 <van-button type="primary" bind:click = "onGetLocation">获取当前位置</van-button>
 <van-button type="primary" bind:click = "onQQMapLocation">获取腾讯地图位置</van-button>
-
+<view class="mapQQ">
+  <map id="mapQQ" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" bindregionchange="bindchangeTap"></map>
+</view>
 

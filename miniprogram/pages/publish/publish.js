@@ -34,8 +34,9 @@ Page({
       height: 50
     }],
 
-    latitude:0,
-    longitude:0
+    latitude: 23.099994,
+    longitude: 113.324520,
+    address: '',
   },
 
   /**
@@ -43,7 +44,6 @@ Page({
    */
   onLoad: function (options) {
     qqmapsdk = new QQMapWX({
-      key: '申请的key'
     });
   },
 
@@ -292,5 +292,41 @@ Page({
         console.log(res);
       }
     });
+  },
+  // 地址逆解析
+  analysisTap: function (lat, lng) {
+    let that = this;
+    demo.reverseGeocoder({
+      location: {
+        latitude: lat,
+        longitude: lng
+      },
+      success: function (res) {
+        // console.log(res)
+        let recommend = res.result.formatted_addresses.recommend
+        let local = res.result.address
+        that.setData({
+          address: recommend,
+          detail: local
+        })
+      }
+    })
+  },
+
+  //视图改变
+  bindchangeTap: function () {
+    let that = this;
+    let mapCtx = wx.createMapContext('mapQQ')
+    mapCtx.getCenterLocation({
+      success: function (res) {
+        console.log(res)
+        let lat = res.latitude
+        let lng = res.longitude
+        that.setData({
+          ["markers[0].latitude"]: lat,  //修改数组对象中的某一项
+          ["markers[0].longitude"]: lng,
+        })
+      }
+    })
   }
 })
