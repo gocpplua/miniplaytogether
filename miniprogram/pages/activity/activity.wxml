@@ -1,0 +1,42 @@
+<!--pages/activity/activity.wxml-->
+<view class='page'>
+<!-- 规定为 750rpx=屏幕宽度 -->
+  <image 
+      style="width: 750rpx; height: 150px; background-color: #eeeeee;" 
+      mode="scaleToFill"
+      src= "{{ activityPicPath }}">
+  </image>
+  <van-cell-group>
+    <van-cell title="【秋名山六月活动】富阳露营" value="" label="活动免费" border="{{ true }}" />
+  </van-cell-group>
+</view>
+
+<view class="container">
+     <!-- 分割线 -->
+  <view class="divLine"></view>
+</view>
+
+<van-cell-group>
+  <van-field
+    clearable
+    readonly
+    left-icon="location-o"
+    label=""
+    icon="arrow"
+    placeholder="浙江省杭州市滨江区万轮科技园"
+    bind:click-icon="onClickAddress"
+  />
+    <van-field
+    clearable
+    readonly
+    left-icon="clock-o"
+    label=""
+    placeholder="07/21 19:00 - 22:00"
+  />
+  </van-cell-group>
+  
+  <view class="container">
+     <!-- 分割线 -->
+  <view class="divLine"></view>
+</view>
+

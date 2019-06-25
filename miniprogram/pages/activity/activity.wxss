@@ -1,0 +1,8 @@
+/* pages/activity/activity.wxss */
+/* 横着的分割View样式 */
+/*分割线样式*/
+.divLine{
+ background:#F0F0F0;
+ width: 100%;
+ height: 20rpx;
+}

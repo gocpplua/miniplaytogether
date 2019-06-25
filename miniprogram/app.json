@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/activity/activity",
     "pages/publish/publish",
     "pages/mainpage/mainpage",    
     "pages/scanCode/scanCode",
@@ -26,9 +27,13 @@
   },
   "tabBar": {
     "list": [{
-      "pagePath": "pages/index/index",
-      "text": "我的藏书"
-    },
+        "pagePath": "pages/activity/activity",
+        "text": "当前活动"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "我的藏书"
+      },
     {
       "pagePath": "pages/scanCode/scanCode",
       "text": "扫码加书"
