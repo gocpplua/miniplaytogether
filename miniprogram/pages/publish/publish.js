@@ -44,6 +44,7 @@ Page({
    */
   onLoad: function (options) {
     qqmapsdk = new QQMapWX({
+      key:'VORBZ-JTSK6-YJKST-MLPKU-RCRSZ-ZT'
     });
   },
 
@@ -322,6 +323,16 @@ Page({
         console.log(res)
         let lat = res.latitude
         let lng = res.longitude
+        qqmapsdk.reverseGeocoder({ // 根据经纬度获取地理位置名称：https://blog.csdn.net/chq1988/article/details/74685647
+          location: {
+            latitude:lat,
+            longitude:lng
+          },
+          success:function(addressRes){
+            var address = addressRes.result.formatted_addresses.recommend;
+            console.log(address)
+          }
+        })
         that.setData({
           ["markers[0].latitude"]: lat,  //修改数组对象中的某一项
           ["markers[0].longitude"]: lng,
