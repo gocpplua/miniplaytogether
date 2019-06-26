@@ -17,3 +17,30 @@ button:focus{
 button::after{
   border: none;
 }
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'iconfont';
+    src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAUIAA0AAAAAB1gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAE7AAAABoAAAAciBdlyUdERUYAAATMAAAAHgAAAB4AKQAKT1MvMgAAAaAAAABCAAAAVjyrSC9jbWFwAAAB9AAAAD4AAAFCAA/p6Gdhc3AAAATEAAAACAAAAAj//wADZ2x5ZgAAAkAAAAEXAAABSLLdno5oZWFkAAABMAAAADAAAAA2FZOCtmhoZWEAAAFgAAAAHQAAACQHxwOFaG10eAAAAeQAAAAPAAAAEAwAABhsb2NhAAACNAAAAAoAAAAKAKQAAG1heHAAAAGAAAAAHwAAACABGgB0bmFtZQAAA1gAAAFJAAACiCnmEVVwb3N0AAAEpAAAAB8AAAAx1Hx+43jaY2BkYGAA4jym82/j+W2+MnCzMIDATcv5CXBa4v8U5pfMqUAuBwMTSBQANDkLCHjaY2BkYGBu+N/AEMPCAALMLxkYGVABCwBYQQNVAAAAeNpjYGRgYGBhyGDgYQABJiDmAkIGhv9gPgMAE/IBjwB42mNgZGFgnMDAysDA1Ml0hoGBoR9CM75mMGLkAIoysDIzYAUBaa4pDA7PbJ/ZMjf8b2CIYW5gaAAKM4LkAORFDFUAAHjaY2GAABYIlgAAAJgAJQB42mNgYGBmgGAZBkYGELAB8hjBfBYGBSDNAoRA/jPb//8hpOQxqEoGRjYGGJOBkQlIMDGgAkaGYQ8Af5AH3QAAAAAAAAAAAAAApAAAeNpj4GGQ+D+F+SVzKgMnAxeDCIMogzyDAoMhgydDNEMMQxpDOgODsByjkZmJmhIbuyErgqkuIgZhihoyKvIxsgvKMYor2jGaC+oxqjMCMbs5kADygcJqykB5EXE2ZVZxdT5GZbg4UBTZmJ+M4koSEkrijIwOjELSwsJSwox5EiARCcb6vznOkUxMkc5MU1yAdJTzPxtpQ5l0OQs7RuYVtQVLxfj4c3qZOPn4GLeKBYrpiuX0MjP35qRPYma01EsAGgQ0jslAUBxkvuBVXpDRQnxXoXxGU6B5f3NdohgZo1yYJjtHMf0tZORkNYlSS7EDmsNUHM3I1JqsIMeU7qXDxslUFR1dxQQkjcIV30BNYmBgAADmwjiTAHjafZA9TgMxEIWf8wckEkIgqF1RANr8lCkTKfQIpaNINt6QaNdeeZ1IOQEtFQeg5RgcgBsg0XIKXpZJkyJr7ejzm5nnsQGc4xsK/98l7oQVjvEoXMERMuEq9RfhGvlduI4WPoUb1H+Em7hVA+EWLtQbHVTthLub0m3LCmcYCFdwiifhKvWVcI38KlzHFT6EG9S/hJsY41e4hWtlqQzhYTBBYJxBY4oN4wIxHCySMgbWoTn0ZhLMTE83ehE7mzgbKO9XYpcDHmg554Ap7T23Zr5KJ/5gy4HUmG4eBUu2KY0uInQoG18snNXdqHOw/Z7ttrTYv2uBNcfsUQ1s1Pw92zPSSGwMr5CSNfIyt6QSU49oa6zxu2cp1vNeCIlOvMv0iMeaNHU6925p4sDi5/KMHH20uZI996gcPmNZCHm/3U7EIIpdhj+T2HEZAAAAeNpjYGKAAC4wyciADljAokyMTGzlqZkVmXkAC/UCsgAAAAAB//8AAgABAAAADAAAABYAAAACAAEAAwADAAEABAAAAAIAAAAAeNpjYGBgZACCq0vUOUD0Tcv5CTAaADwtBcwAAA==) format('woff'),
+        url('iconfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 40px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-weixin:before {
+  content: "\e63d";
+}
+

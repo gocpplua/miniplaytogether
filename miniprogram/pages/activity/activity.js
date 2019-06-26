@@ -70,5 +70,14 @@ Page({
         latitude: 23.099994,
         longitude: 113.32452,
       })
-    }
+    },
+
+  open:function(){
+    console.log("open")
+  },
+
+  callwechat:function(){
+    console.log('callwechat')
+  }
+  
 })
