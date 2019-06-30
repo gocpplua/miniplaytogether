@@ -1,4 +1,8 @@
 // pages/activity/activity.js
+const testDB = wx.cloud.database({
+  env: 'test-52nlc'
+})
+
 Page({
 
   /**
@@ -6,7 +10,8 @@ Page({
    */
   data: {
     activityPicPath: "../../images/create-collection.png",
-    activityInfo:"秋名山社 周三18-21"
+    activityInfo:"秋名山社 周三18-21",
+    avatarUrl:[]
   },
 
   /**
@@ -20,14 +25,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getActivityAvatarUrl("activity")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
@@ -78,6 +82,46 @@ Page({
 
   callwechat:function(){
     console.log('callwechat')
+  },
+
+  bindGetUserInfo:function(e) {
+    console.log(e.detail.userInfo)
+    var avatarUrlTmp = e.detail.userInfo.avatarUrl
+
+    this.setData(
+      {
+        avatarUrl:avatarUrlTmp
+      }
+    )
+
+    const todos = testDB.collection('activity')
+    todos.add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        avatarUrl: avatarUrlTmp
+      }
+    }).then(res => {
+      console.log(res)
+    })
+  },
+
+  // 获取活动报名玩家的头像Array
+  getActivityAvatarUrl:function(collectionName){
+    var that = this
+    const activityColl = testDB.collection(collectionName)
+    activityColl.get(
+      {
+        success:function(res){
+          console.log(res.data)
+          that.setData(
+            {
+              avatarUrl:res.data
+            }
+          )
+          console.log(that.data.avatarUrl)
+        }
+      }
+    )
   }
-  
+
 })

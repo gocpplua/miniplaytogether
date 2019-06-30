@@ -55,3 +55,8 @@
 
 <view class='weui-footer' bindtap="open">我是WeUI的footer</view>
 
+<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 点击报名 </button>
+
+<view wx:for="{{avatarUrl}}">
+  <image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image>
+</view>
