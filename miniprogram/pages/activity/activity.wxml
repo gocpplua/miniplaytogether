@@ -60,3 +60,4 @@
 <view wx:for="{{avatarUrl}}">
   <image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image>
 </view>
+

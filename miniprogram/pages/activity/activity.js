@@ -2,6 +2,7 @@
 const testDB = wx.cloud.database({
   env: 'test-52nlc'
 })
+const app = getApp()
 
 Page({
 
@@ -11,7 +12,9 @@ Page({
   data: {
     activityPicPath: "../../images/create-collection.png",
     activityInfo:"秋名山社 周三18-21",
-    avatarUrl:[]
+    avatarUrl:[],
+    openid: '',
+    isBaoming:false
   },
 
   /**
@@ -19,6 +22,12 @@ Page({
    */
   onLoad: function (options) {
     console.log('onLoad')
+    if (app.globalData.openid) {
+      this.setData({
+        openid: app.globalData.openid
+      })
+    }
+    console.log(this.data)
   },
 
   /**
@@ -26,7 +35,9 @@ Page({
    */
   onReady: function () {
     console.log('onReady')
+    
     this.getActivityAvatarUrl("activity")
+    this.queryIsBaoming()
   },
 
   /**
@@ -88,11 +99,26 @@ Page({
 
   bindGetUserInfo:function(e) {
     console.log('bindGetUserInfo')
-    console.log(e.detail.userInfo)
+    console.log(e)
+    if (!e.detail.userInfo)
+    {
+      // 用户按了拒绝按钮
+      wx.showToast({
+        title: '请授权后进行报名',
+      })
+      return
+    }
+    if(this.data.isBaoming){
+      wx.showToast({
+        title: '已经报名，请勿重复报名',
+      })
+      return
+    }
+
     var avatarUrlTmp = 
-      {
-        avatarUrl:e.detail.userInfo.avatarUrl
-      }
+    {
+      avatarUrl:e.detail.userInfo.avatarUrl
+    }
 
 
     this.data.avatarUrl.push(avatarUrlTmp)
@@ -102,6 +128,30 @@ Page({
         avatarUrl: this.data.avatarUrl
       }
     )
+    console.log(this.data)
+
+    var that= this
+    wx.cloud.callFunction({
+      name: 'baoming',
+      success: res => {
+        wx.showToast({
+          title: '报名成功',
+        })
+        that.setData(
+          {
+            isBaoming: true,
+          }
+        )
+        console.log(JSON.stringify(res.result))
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '调用失败',
+        })
+        console.error('[云函数] [sum] 调用失败：', err)
+      }
+    })
 
     const todos = testDB.collection('activity')
     todos.add({
@@ -121,7 +171,8 @@ Page({
     activityColl.get(
       {
         success:function(res){
-          console.log(res.data)
+          console.log("getActivityAvatarUrl success")
+          console.log(res)
           that.setData(
             {
               avatarUrl:res.data
@@ -131,6 +182,51 @@ Page({
         }
       }
     )
+  },
+  
+  queryIsBaoming:function(){
+    var that = this
+    wx.cloud.callFunction({
+      name: 'baoming',
+      data:{
+        openid:"null"
+      },
+      success: res => {
+        //wx.showToast({
+          //title: '调用成功',
+        //})
+        console.log(JSON.stringify(res.result))
+        var result = res.result
+        var isExist = false
+        if (result && result.data.length != 0) {
+          isExist = true
+        }
+        if (!isExist) {
+          console.log("玩家未报名")
+          that.setData(
+            {
+              isBaoming:false
+            }
+          )
+        }
+        else {
+          console.log("玩家已经报名")
+          console.log(result.data[0])
+          console.log(result.data[0].avatarUrl)
+          that.setData(
+            {
+              isBaoming: true
+            }
+          )
+        }
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '调用失败',
+        })
+        console.error('[云函数] [sum] 调用失败：', err)
+      }
+    })
   }
-
 })
