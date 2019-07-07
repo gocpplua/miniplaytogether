@@ -14,7 +14,8 @@ Page({
     activityInfo:"秋名山社 周三18-21",
     avatarUrl:[],
     openid: '',
-    isBaoming:false
+    isBaoming:false,
+    baomingBtn:"点击报名"
   },
 
   /**
@@ -22,6 +23,7 @@ Page({
    */
   onLoad: function (options) {
     console.log('onLoad')
+    console.log(options)
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid
@@ -77,8 +79,24 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    console.log(this.data)
+  onShareAppMessage: function (res) {
+    console.log(res)
+    // res 有两个参数：
+    //from是两个转发来源。一个是右上角menu，一个是转发button；
+    //target是一个对象，from是menu，则target就是undefind，from是button，那就是button本身；
+    if (res.from == 'button'){
+      if(res.target.id == 1){
+        return {
+          title: this.data.activityInfo,
+          path:'/pages/activity/activity?param=' + 12
+        }
+      }
+    }
+    else{
+      return {
+        title: this.data.activityInfo
+      }
+    }
   },
 
   onClickAddress:function(){
@@ -139,6 +157,7 @@ Page({
         that.setData(
           {
             isBaoming: true,
+            baomingBtn:"已报名"
           }
         )
         console.log(JSON.stringify(res.result))
@@ -204,7 +223,8 @@ Page({
           console.log("玩家未报名")
           that.setData(
             {
-              isBaoming:false
+              isBaoming:false,
+              baomingBtn: "点击报名"
             }
           )
         }
@@ -214,7 +234,8 @@ Page({
           console.log(result.data[0].avatarUrl)
           that.setData(
             {
-              isBaoming: true
+              isBaoming: true,
+              baomingBtn: "已报名"
             }
           )
         }
