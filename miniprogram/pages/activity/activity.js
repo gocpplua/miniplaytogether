@@ -114,6 +114,18 @@ Page({
     console.log('callwechat')
   },
 
+  callphone:function(){
+    wx.makePhoneCall({
+      phoneNumber:'18767122273',
+      success:function(){
+        console.log("拨打电话成功")
+      },
+      fail:function(){
+        console.log("拨打电话失败")
+      }
+    })
+  },
+
   bindGetUserInfo:function(e) {
     console.log('bindGetUserInfo')
     console.log(e)

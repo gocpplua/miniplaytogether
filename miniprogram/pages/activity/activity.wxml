@@ -46,10 +46,11 @@
     </view>
     <view class="weui-cell__bd">
         <view>陈琦</view>
-        <view style="font-size: 13px;color: #888888;">如有问题请添加微信:zjut-cq</view>
+        <view style="font-size: 13px;color: #888888;">有问题添加微信:zjut-cq</view>
     </view>
     <view>
       <icon class="iconfont icon-weixin" bindtap='callwechat'></icon>
+      <icon class="iconfont icon-weixin" bindtap='callphone'></icon>
     </view>
 </view>
 
