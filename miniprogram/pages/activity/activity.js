@@ -35,9 +35,6 @@ Page({
    */
   onReady: function () {
     console.log('onReady')
-    
-    this.getActivityAvatarUrl("activity")
-    this.queryIsBaoming()
   },
 
   /**
@@ -45,6 +42,8 @@ Page({
    */
   onShow: function () {
     console.log('onShow')
+    this.getActivityAvatarUrl("activity")
+    this.queryIsBaoming()
   },
 
   /**
@@ -79,7 +78,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    console.log(this.data)
   },
 
   onClickAddress:function(){
