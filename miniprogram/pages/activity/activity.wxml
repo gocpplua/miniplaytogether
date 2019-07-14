@@ -58,6 +58,10 @@
 <button open-type="share" id = "1"> 分享 </button>
 
 <view wx:for="{{avatarUrl}}">
-  <image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image>
+  <!-- 头像正方形 -->
+  <!--<image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image> -->
+  
+  <!-- 头像圆角:https://cloud.tencent.com/developer/article/1175597 -->
+  <image style="width: 30px; height: 30px; border-radius:50%; display: flex;overflow:hidden;text-align: center;"  src="{{item.avatarUrl}}"></image>
 </view>
 
