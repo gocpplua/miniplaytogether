@@ -15,7 +15,8 @@ Page({
     avatarUrl:[],
     openid: '',
     isBaoming:false,
-    baomingBtn:"点击报名"
+    baomingBtn:"点击报名",
+    myAvatarUrl:''
   },
 
   /**
@@ -129,69 +130,110 @@ Page({
   bindGetUserInfo:function(e) {
     console.log('bindGetUserInfo')
     console.log(e)
-    if (!e.detail.userInfo)
-    {
-      // 用户按了拒绝按钮
-      wx.showToast({
-        title: '请授权后进行报名',
+    if (this.data.isBaoming){
+      // 玩家已经报名，此时点击这个按钮是取消报名的意思 
+      var that = this
+      wx.cloud.callFunction({
+        name: 'cancelBaoming',
+        success: res => {
+          wx.showToast({
+            title: '取消报名成功',
+          })
+          var dataTmp = []
+          that.data.avatarUrl.filter(function (e) {
+            if (e.avatarUrl != that.data.myAvatarUrl) {
+              dataTmp.push(e)
+            }
+          })
+          that.setData(
+            {
+              isBaoming: false,
+              baomingBtn: "点击报名",
+              myAvatarUrl:'',
+              avatarUrl:dataTmp
+            }
+          )
+          console.log(JSON.stringify(res.result))
+        },
+        fail: err => {
+          wx.showToast({
+            icon: 'none',
+            title: '调用失败',
+          })
+          console.error('[云函数] [cancelBaoming] 调用失败：', err)
+        }
       })
-      return
     }
-    if(this.data.isBaoming){
-      wx.showToast({
-        title: '已经报名，请勿重复报名',
-      })
-      return
-    }
-
-    var avatarUrlTmp = 
-    {
-      avatarUrl:e.detail.userInfo.avatarUrl
-    }
-
-
-    this.data.avatarUrl.push(avatarUrlTmp)
-    console.log(this.data.avatarUrl)
-    this.setData(
+    else{
+      // 玩家没有报名，此时点击这个按钮是报名的意思
+      if (!e.detail.userInfo) {
+        // 用户按了拒绝按钮
+        wx.showToast({
+          title: '请授权后进行报名',
+        })
+        return
+      }
+      var avatarUrlTmp =
       {
-        avatarUrl: this.data.avatarUrl
-      }
-    )
-    console.log(this.data)
-
-    var that= this
-    wx.cloud.callFunction({
-      name: 'baoming',
-      success: res => {
-        wx.showToast({
-          title: '报名成功',
-        })
-        that.setData(
-          {
-            isBaoming: true,
-            baomingBtn:"已报名"
-          }
-        )
-        console.log(JSON.stringify(res.result))
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '调用失败',
-        })
-        console.error('[云函数] [sum] 调用失败：', err)
-      }
-    })
-
-    const todos = testDB.collection('activity')
-    todos.add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
         avatarUrl: e.detail.userInfo.avatarUrl
       }
-    }).then(res => {
-      console.log(res)
-    })
+
+
+      this.data.avatarUrl.push(avatarUrlTmp)
+      console.log(this.data.avatarUrl)
+      this.setData(
+        {
+          avatarUrl: this.data.avatarUrl
+        }
+      )
+      console.log(this.data)
+
+      var that = this
+      wx.cloud.callFunction({
+        name: 'baoming',
+        success: res => {
+          wx.showToast({
+            title: '报名成功',
+          })
+          that.setData(
+            {
+              isBaoming: true,
+              baomingBtn: "取消报名"
+            }
+          )
+          console.log(JSON.stringify(res.result))
+        },
+        fail: err => {
+          wx.showToast({
+            icon: 'none',
+            title: '调用失败',
+          })
+          console.error('[云函数] [sum] 调用失败：', err)
+        }
+      })
+
+      const todos = testDB.collection('activity')
+      todos.add({
+        // data 字段表示需新增的 JSON 数据
+        data: {
+          avatarUrl: e.detail.userInfo.avatarUrl,
+        },
+        success: function (res) {
+          // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+          console.log("添加到Activity")
+          console.log(res)
+          that.setData({
+            myAvatarUrl: e.detail.userInfo.avatarUrl
+          })
+        },
+        fail: function (res) {
+          console.error(err)
+        }
+      })
+    }
+
+
+    
   },
 
   // 获取活动报名玩家的头像Array
@@ -219,12 +261,13 @@ Page({
     wx.cloud.callFunction({
       name: 'baoming',
       data:{
-        openid:"null"
+        openid:"null",
       },
       success: res => {
         //wx.showToast({
           //title: '调用成功',
         //})
+        console.log("查询玩家报名状态成功")
         console.log(JSON.stringify(res.result))
         var result = res.result
         var isExist = false
@@ -236,7 +279,8 @@ Page({
           that.setData(
             {
               isBaoming:false,
-              baomingBtn: "点击报名"
+              baomingBtn: "点击报名",
+              myAvatarUrl:''
             }
           )
         }
@@ -247,7 +291,8 @@ Page({
           that.setData(
             {
               isBaoming: true,
-              baomingBtn: "已报名"
+              baomingBtn: "取消报名",
+              myAvatarUrl: result.data[0].avatarUrl
             }
           )
         }

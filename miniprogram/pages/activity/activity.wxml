@@ -54,7 +54,7 @@
     </view>
 </view>
 
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" disabled="{{isBaoming}}"> {{baomingBtn}} </button>
+<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
 <button open-type="share" id = "1"> 分享 </button>
 
 <view wx:for="{{avatarUrl}}">
