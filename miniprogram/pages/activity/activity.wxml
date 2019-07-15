@@ -54,14 +54,17 @@
     </view>
 </view>
 
-<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
-<button open-type="share" id = "1"> 分享 </button>
+<!-- flex布局，参考：weui.wxss -->
+<view style='display:flex'>
+  <button class="placeholder" open-type="share" id = "1"> 分享 </button>
+  <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
+</view>
 
 <view wx:for="{{avatarUrl}}">
   <!-- 头像正方形 -->
   <!--<image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image> -->
   
   <!-- 头像圆角:https://cloud.tencent.com/developer/article/1175597 -->
-  <image style="width: 30px; height: 30px; border-radius:50%; display: flex;overflow:hidden;text-align: center;"  src="{{item.avatarUrl}}"></image>
+  <image style="width: 30px; height: 30px; border-radius:50%; display: flex;overflow:hidden;"  src="{{item.avatarUrl}}"></image>
 </view>
 
