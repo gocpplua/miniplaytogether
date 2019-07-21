@@ -71,5 +71,12 @@
 </view>
 
 
+<!-- flex布局，参考：weui.wxss -->
+<view class = 'bottombtn' style='display:flex'>
+  <button class="placeholder" open-type="share" id = "1"> 分享 </button>
+  <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
+</view>
+
+
 
 

@@ -14,7 +14,7 @@
     margin: 1px; /* 所有 4 个外边距都是 X px */
     padding: 0 20px;/* 上内边距和下内边距是 0px, 右内边距和左内边距是 20px*/
     text-align: center;/* 把文本排列到中间 */
-    background-color: rgb(120, 241, 130);
+    background-color: #09BB07;
     height: 2.3em;
     line-height: 2.3em;
     color: #0e0d0d;
@@ -32,3 +32,10 @@
   background-color:  rgb(255, 255, 255);
   margin: 2px;
 }
+
+/*按钮固定到底部*/
+.bottombtn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  }
