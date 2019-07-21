@@ -1,5 +1,5 @@
 <!--pages/activity/activity.wxml-->
-<view class='page'>
+<view class='page' style='margin-bottom:50px'>
 <!-- 规定为 750rpx=屏幕宽度 -->
   <image 
       style="width: 750rpx; height: 150px; background-color: #eeeeee;" 
@@ -9,73 +9,69 @@
   <van-cell-group>
     <van-cell title="【秋名山六月活动】富阳露营" value="" label="活动免费" border="{{ true }}" />
   </van-cell-group>
-</view>
 
-<view class="container">
-     <!-- 分割线 -->
-  <view class="divLine"></view>
-</view>
-
-<van-cell-group>
-  <van-field
-    clearable
-    readonly
-    left-icon="location-o"
-    label=""
-    icon="arrow"
-    placeholder="浙江省杭州市滨江区万轮科技园"
-    bind:click-icon="onClickAddress"
-  />
-    <van-field
-    clearable
-    readonly
-    left-icon="clock-o"
-    label=""
-    placeholder="07/21 19:00 - 22:00"
-  />
-  </van-cell-group>
-  
   <view class="container">
      <!-- 分割线 -->
   <view class="divLine"></view>
-</view>
+  </view>
 
-<view class="weui-cell">
-    <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-        <image src="{{ activityPicPath }}" style="width: 50px; height: 50px; display: block"/>
-    </view>
-    <view class="weui-cell__bd">
-        <view>陈琦</view>
-        <view style="font-size: 13px;color: #888888;">有问题添加微信:zjut-cq</view>
-    </view>
-    <view>
-      <icon class="iconfont icon-weixin" bindtap='callwechat'></icon>
-      <icon class="iconfont icon-weixin" bindtap='callphone'></icon>
-    </view>
-</view>
-
-<!-- flex布局，参考：weui.wxss -->
-<view style='display:flex'>
-  <button class="placeholder" open-type="share" id = "1"> 分享 </button>
-  <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
-</view>
-
-<view class='allavatarstype' >
-  <view class='avatarstype' wx:for="{{avatarUrl}}">
-    <!-- 头像正方形 -->
-    <!--<image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image> -->
+  <van-cell-group>
+    <van-field
+      clearable
+      readonly
+      left-icon="location-o"
+      label=""
+      icon="arrow"
+      placeholder="浙江省杭州市滨江区万轮科技园"
+      bind:click-icon="onClickAddress"
+    />
+      <van-field
+      clearable
+      readonly
+      left-icon="clock-o"
+      label=""
+      placeholder="07/21 19:00 - 22:00"
+    />
+    </van-cell-group>
     
-    <!-- 头像圆角:https://cloud.tencent.com/developer/article/1175597 -->
-    <image style="width: 30px; height: 30px; border-radius:50%;overflow:hidden;"  src="{{item.avatarUrl}}"></image>
+    <view class="container">
+      <!-- 分割线 -->
+    <view class="divLine"></view>
+  </view>
+
+  <view class="weui-cell">
+      <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+          <image src="{{ activityPicPath }}" style="width: 50px; height: 50px; display: block"/>
+      </view>
+      <view class="weui-cell__bd">
+          <view>陈琦</view>
+          <view style="font-size: 13px;color: #888888;">有问题添加微信:zjut-cq</view>
+      </view>
+      <view>
+        <icon class="iconfont icon-weixin" bindtap='callwechat'></icon>
+        <icon class="iconfont icon-weixin" bindtap='callphone'></icon>
+      </view>
+  </view>
+
+  <view style='display:flex; flex-wrap:wrap;width:100%, height:auto' >
+    <view style='margin:2px' wx:for="{{avatarUrl}}">
+      <!-- 头像正方形 -->
+      <!--<image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image> -->
+      
+      <!-- 头像圆角:https://cloud.tencent.com/developer/article/1175597 -->
+      <image style="width: 30px; height: 30px; border-radius:50%;overflow:hidden;"  src="{{item.avatarUrl}}"></image>
+    </view>
+  </view>
+
+
+  <!-- flex布局，参考：weui.wxss -->
+  <view class = 'bottombtn' style='display:flex'>
+    <button class="placeholder" open-type="share" id = "1"> 分享 </button>
+    <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
   </view>
 </view>
 
 
-<!-- flex布局，参考：weui.wxss -->
-<view class = 'bottombtn' style='display:flex'>
-  <button class="placeholder" open-type="share" id = "1"> 分享 </button>
-  <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
-</view>
 
 
 
