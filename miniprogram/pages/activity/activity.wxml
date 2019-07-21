@@ -60,8 +60,8 @@
   <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
 </view>
 
-<view style='display:flex' >
-  <view style="margin: 2px" wx:for="{{avatarUrl}}">
+<view class='allavatarstype' >
+  <view class='avatarstype' wx:for="{{avatarUrl}}">
     <!-- 头像正方形 -->
     <!--<image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image> -->
     
@@ -69,5 +69,7 @@
     <image style="width: 30px; height: 30px; border-radius:50%;overflow:hidden;"  src="{{item.avatarUrl}}"></image>
   </view>
 </view>
+
+
 
 

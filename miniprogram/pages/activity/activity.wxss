@@ -19,3 +19,16 @@
     line-height: 2.3em;
     color: #0e0d0d;
 }
+
+
+.allavatarstype{
+  padding: 2px;
+  display: flex; 
+  flex-direction: row ;/* row默认，属性值有row|row-reverse|column|column-reverse*/
+  flex-wrap: wrap;  /* nowrap 默认，属性值有：nowrap | wrap | wrap-reverse */
+}
+.avatarstype{
+  width: 30px; height: 30px;  
+  background-color:  rgb(255, 255, 255);
+  margin: 2px;
+}
