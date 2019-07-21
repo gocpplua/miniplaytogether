@@ -12,7 +12,7 @@ Page({
   data: {
     activityPicPath: "../../images/create-collection.png",
     activityInfo:"秋名山社 周三18-21",
-    avatarUrl:[],
+    avatarUrl:[], 
     openid: '',
     isBaoming:false,
     baomingBtn:"点击报名",
