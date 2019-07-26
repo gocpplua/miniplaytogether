@@ -10,13 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activityPicPath: "../../images/create-collection.png",
     activityInfo:"秋名山社 周三18-21",
-    avatarUrl:[], 
+    avatarUrl:[], //[{}]
     openid: '',
     isBaoming:false,
     baomingBtn:"点击报名",
-    myAvatarUrl:''
+    myAvatarUrl:'',
+    myActivitysInfo:[]
   },
 
   /**
@@ -45,6 +45,9 @@ Page({
    */
   onShow: function () {
     console.log('onShow')
+    /* 获取到活动的详细信息 */
+    this.getActivity()
+
     this.getActivityAvatarUrl("activity")
     this.queryIsBaoming()
   },
@@ -234,6 +237,25 @@ Page({
 
 
     
+  },
+
+  // 获取所有的活动信息
+  getActivity:function(){
+    var that = this
+    const activity = testDB.collection("activitydb")
+    activity.get({
+      success:function(res){
+        console.log("getActivity success")
+        console.log(res.data[0])
+        var myActivityInfoTmp = res.data[0]
+        var myActivitysInfoTmp = []
+        myActivitysInfoTmp.push(myActivityInfoTmp)
+        that.setData({
+          myActivitysInfo: myActivitysInfoTmp
+        })
+        console.log(that.data.myActivitysInfo)
+      }
+    })
   },
 
   // 获取活动报名玩家的头像Array

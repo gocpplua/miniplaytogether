@@ -4,7 +4,7 @@
   <image 
       style="width: 750rpx; height: 150px; background-color: #eeeeee;" 
       mode="scaleToFill"
-      src= "{{ activityPicPath }}">
+      src= "{{ myActivitysInfo[0].db_picpath }}">
   </image>
   <van-cell-group>
     <van-cell title="【秋名山六月活动】富阳露营" value="" label="活动免费" border="{{ true }}" />
@@ -41,7 +41,7 @@
 
   <view class="weui-cell">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-          <image src="{{ activityPicPath }}" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;"/>
+          <image src="{{ myActivitysInfo[0].db_picpath }}" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;"/>
       </view>
       <view class="weui-cell__bd">
           <view>陈琦</view>
