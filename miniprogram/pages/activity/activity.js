@@ -105,8 +105,8 @@ Page({
 
   onClickAddress:function(){
       wx.openLocation({
-        latitude: 23.099994,
-        longitude: 113.32452,
+        latitude: this.data.myActivitysInfo[0].db_latitude,
+        longitude: this.data.myActivitysInfo[0].db_longitude,
       })
     },
 

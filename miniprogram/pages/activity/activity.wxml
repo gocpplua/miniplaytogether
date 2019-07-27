@@ -7,7 +7,7 @@
       src= "{{ myActivitysInfo[0].db_picpath }}">
   </image>
   <van-cell-group>
-    <van-cell title="【秋名山六月活动】富阳露营" value="" label="活动免费" border="{{ true }}" />
+    <van-cell title="{{ myActivitysInfo[0].db_title }}" value="" label="{{ myActivitysInfo[0].db_content }}" border="{{ true }}" />
   </van-cell-group>
 
   <view class="container">
@@ -22,7 +22,7 @@
       left-icon="location-o"
       label=""
       icon="arrow"
-      placeholder="浙江省杭州市滨江区万轮科技园"
+      placeholder="{{ myActivitysInfo[0].db_address }}"
       bind:click-icon="onClickAddress"
     />
       <van-field
@@ -30,7 +30,7 @@
       readonly
       left-icon="clock-o"
       label=""
-      placeholder="07/21 19:00 - 22:00"
+      placeholder="{{ myActivitysInfo[0].db_endttime }}"
     />
     </van-cell-group>
     
