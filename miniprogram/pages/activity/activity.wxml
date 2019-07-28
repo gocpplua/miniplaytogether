@@ -41,7 +41,7 @@
 
   <view class="weui-cell">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-          <image src="{{ myActivitysInfo[0].db_picpath }}" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;"/>
+          <image src="{{ myActivitysInfo[0].db_publisher.db_avatarUrl }}" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;"/>
       </view>
       <view class="weui-cell__bd">
           <view>陈琦</view>
