@@ -54,12 +54,12 @@
   </view>
 
   <view style='display:flex; flex-wrap:wrap;width:100%, height:auto' >
-    <view style='margin:2px' wx:for="{{avatarUrl}}">
+    <view style='margin:2px' wx:for="{{allUserSignUpInfo}}">
       <!-- 头像正方形 -->
       <!--<image style="width: 200px; height: 200px; background-color: #eeeeee;"  src="{{item.avatarUrl}}"></image> -->
       
       <!-- 头像圆角:https://cloud.tencent.com/developer/article/1175597 -->
-      <image style="width: 30px; height: 30px; border-radius:50%;overflow:hidden;"  src="{{item.avatarUrl}}"></image>
+      <image style="width: 30px; height: 30px; border-radius:50%;overflow:hidden;"  src="{{item.db_avatarUrl}}"></image>
     </view>
   </view>
 
@@ -67,7 +67,7 @@
   <!-- flex布局，参考：weui.wxss -->
   <view class = 'bottombtn' style='display:flex'>
     <button class="placeholder" open-type="share" id = "1"> 分享 </button>
-    <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> {{baomingBtn}} </button>
+    <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="baomingActivity"> {{baomingBtn}} </button>
   </view>
 </view>
 

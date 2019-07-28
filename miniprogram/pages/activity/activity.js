@@ -15,8 +15,8 @@ Page({
     openid: '',
     isBaoming:false,
     baomingBtn:"点击报名",
-    myAvatarUrl:'',
-    myActivitysInfo:[]
+    myActivitysInfo:[],
+    allUserSignUpInfo:[]
   },
 
   /**
@@ -24,13 +24,26 @@ Page({
    */
   onLoad: function (options) {
     console.log('onLoad')
-    console.log(options)
-    if (app.globalData.openid) {
-      this.setData({
-        openid: app.globalData.openid
-      })
-    }
-    console.log(this.data)
+    var that = this
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        that.setData({
+          openid: res.result.openid
+        })
+        console.log('login 成功')
+        console.log(that.data)
+        that.getActivity()
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '获取 openid 失败，请检查是否有部署 login 云函数',
+        })
+        console.log('[云函数] [login] 获取 openid 失败，请检查是否有部署云函数，错误信息：', err)
+      }
+    })
   },
 
   /**
@@ -44,12 +57,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('onShow')
-    /* 获取到活动的详细信息 */
-    this.getActivity()
-
-    this.getActivityAvatarUrl("activity")
-    this.queryIsBaoming()
+    console.log('onShow') 
   },
 
   /**
@@ -130,115 +138,6 @@ Page({
     })
   },
 
-  bindGetUserInfo:function(e) {
-    console.log('bindGetUserInfo')
-    console.log(e)
-    if (this.data.isBaoming){
-      // 玩家已经报名，此时点击这个按钮是取消报名的意思 
-      var that = this
-      wx.cloud.callFunction({
-        name: 'cancelBaoming',
-        success: res => {
-          wx.showToast({
-            title: '取消报名成功',
-          })
-          var dataTmp = []
-          that.data.avatarUrl.filter(function (e) {
-            if (e.avatarUrl != that.data.myAvatarUrl) {
-              dataTmp.push(e)
-            }
-          })
-          that.setData(
-            {
-              isBaoming: false,
-              baomingBtn: "点击报名",
-              myAvatarUrl:'',
-              avatarUrl:dataTmp
-            }
-          )
-          console.log(JSON.stringify(res.result))
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '调用失败',
-          })
-          console.error('[云函数] [cancelBaoming] 调用失败：', err)
-        }
-      })
-    }
-    else{
-      // 玩家没有报名，此时点击这个按钮是报名的意思
-      if (!e.detail.userInfo) {
-        // 用户按了拒绝按钮
-        wx.showToast({
-          title: '请授权后进行报名',
-        })
-        return
-      }
-      var avatarUrlTmp =
-      {
-        avatarUrl: e.detail.userInfo.avatarUrl
-      }
-
-
-      this.data.avatarUrl.push(avatarUrlTmp)
-      console.log(this.data.avatarUrl)
-      this.setData(
-        {
-          avatarUrl: this.data.avatarUrl
-        }
-      )
-      console.log(this.data)
-
-      var that = this
-      wx.cloud.callFunction({
-        name: 'baoming',
-        success: res => {
-          wx.showToast({
-            title: '报名成功',
-          })
-          that.setData(
-            {
-              isBaoming: true,
-              baomingBtn: "取消报名"
-            }
-          )
-          console.log(JSON.stringify(res.result))
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '调用失败',
-          })
-          console.error('[云函数] [sum] 调用失败：', err)
-        }
-      })
-
-      const todos = testDB.collection('activity')
-      todos.add({
-        // data 字段表示需新增的 JSON 数据
-        data: {
-          avatarUrl: e.detail.userInfo.avatarUrl,
-        },
-        success: function (res) {
-          // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-          console.log("添加到Activity")
-          console.log(res)
-          that.setData({
-            myAvatarUrl: e.detail.userInfo.avatarUrl
-          })
-        },
-        fail: function (res) {
-          console.error(err)
-        }
-      })
-    }
-
-
-    
-  },
-
   // 获取所有的活动信息
   getActivity:function(){
     var that = this
@@ -254,77 +153,184 @@ Page({
           myActivitysInfo: myActivitysInfoTmp
         })
         console.log(that.data.myActivitysInfo)
+        that.getAllUserSignUpInfo()
       }
     })
   },
-
-  // 获取活动报名玩家的头像Array
-  getActivityAvatarUrl:function(collectionName){
-    var that = this
-    const activityColl = testDB.collection(collectionName)
-    activityColl.get(
-      {
-        success:function(res){
-          console.log("getActivityAvatarUrl success")
-          console.log(res)
-          that.setData(
-            {
-              avatarUrl:res.data
-            }
-          )
-          console.log(that.data.avatarUrl)
-        }
-      }
-    )
-  },
   
-  queryIsBaoming:function(){
-    var that = this
-    wx.cloud.callFunction({
-      name: 'baoming',
-      data:{
-        openid:"null",
-      },
-      success: res => {
-        //wx.showToast({
-          //title: '调用成功',
-        //})
-        console.log("查询玩家报名状态成功")
-        console.log(JSON.stringify(res.result))
-        var result = res.result
-        var isExist = false
-        if (result && result.data.length != 0) {
-          isExist = true
-        }
-        if (!isExist) {
-          console.log("玩家未报名")
+  //报名活动，调用远端云函数 baomingactivity
+  baomingActivity:function(e){
+    console.log('baomingActivity')
+    console.log(e)
+
+    // 玩家点击报名，需要先进行授权
+    if (!e.detail.userInfo) {
+      // 用户按了拒绝按钮
+      wx.showToast({
+        title: '请授权后进行报名',
+      })
+      return
+    }
+
+  // 已经授权
+  // 得到玩家信息
+    var myavatarUrl = e.detail.userInfo.avatarUrl // 玩家头像信息
+    var myavtivityid = this.data.myActivitysInfo[0].db_avtivityid
+    if (this.data.isBaoming) {
+      // 玩家已经报名，此时点击这个按钮是取消报名的意思 
+      var that = this
+      wx.cloud.callFunction({
+        name: 'cancelBaoming', // 云函数名字
+        data: {  // 云函数参数
+          avtivityid: myavtivityid
+        },
+        success: res => {
+          console.log("cancelBaoming return succes")
+          console.log(res)
+          if (!res.result) {
+            wx.showToast({
+              title: '玩家没有报名过，取消失败',
+            })
+          }
+          else {
+            var result = JSON.stringify(res.result)
+            console.log(result)
+            wx.showToast({
+              title: '取消报名成功',
+            })
+          }
+
+          var dataTmp = []
+          that.data.allUserSignUpInfo.filter(function (e) {
+            if (e.db_openid != that.data.openid) {
+              dataTmp.push(e)
+            }
+          })
           that.setData(
             {
-              isBaoming:false,
+              isBaoming: false,
               baomingBtn: "点击报名",
-              myAvatarUrl:''
+              allUserSignUpInfo: dataTmp
             }
           )
+        },
+        fail: err => {
+          wx.showToast({
+            icon: 'none',
+            title: '调用失败',
+          })
+          console.error('[云函数] [baomingactivity] 调用失败：', err)
         }
-        else {
-          console.log("玩家已经报名")
-          console.log(result.data[0])
-          console.log(result.data[0].avatarUrl)
+      })
+    }
+    else{
+      // 报名
+      var that = this
+      wx.cloud.callFunction({
+        name: 'baomingactivity', // 云函数名字
+        data: {  // 云函数参数
+          avatarUrl: myavatarUrl,
+          avtivityid: myavtivityid
+        },
+        success: res => {
+          console.log("baomingactivity return succes")
+          console.log(res)
+          if (!res.result){
+            wx.showToast({
+              title: '玩家已经报名过',
+            })
+          }
+          else{
+            var result = JSON.stringify(res.result)
+            console.log(result)
+            wx.showToast({
+              title: '报名成功',
+            })
+          }
+
+          var usersignupinfo = {
+            db_avatarUrl: myavatarUrl,
+            db_avtivityid: myavtivityid,
+            db_openid: that.data.openid
+          }
+          that.data.allUserSignUpInfo.push(usersignupinfo)
+          console.log(that.data.allUserSignUpInfo)
           that.setData(
             {
               isBaoming: true,
               baomingBtn: "取消报名",
-              myAvatarUrl: result.data[0].avatarUrl
+              allUserSignUpInfo: that.data.allUserSignUpInfo
             }
           )
+
+        },
+        fail: err => {
+          wx.showToast({
+            icon: 'none',
+            title: '调用失败',
+          })
+          console.error('[云函数] [baomingactivity] 调用失败：', err)
         }
+      })
+    }
+  },
+  
+  // 获取本次活动所有玩家报名信息
+  getAllUserSignUpInfo:function(){
+    console.log('getAllUserSignUpInfo')
+
+    var that = this
+    var myavtivityid = this.data.myActivitysInfo[0].db_avtivityid
+    wx.cloud.callFunction({
+      name: 'getAllUserSignUpInfo', // 云函数名字
+      data: {  // 云函数参数
+        avtivityid: myavtivityid
+      },
+      success: res => {
+        console.log("getAllUserSignUpInfo return succes:")
+        console.log(res)
+        if (!res.result) {
+          console.log("getAllUserSignUpInfo没有获取到数据1")
+          return
+        }
+        var data = res.result.data
+        if (data.length == 0){
+          console.log("getAllUserSignUpInfo没有获取到数据2")
+          return
+        }
+        console.log(JSON.stringify(data))
+        var allUserSignUpInfoTmp = []
+        for (let i = 0; i < data.length; i++) {
+          var item = data[i]
+          console.log(item);
+
+          // 本人是否报名
+          if (that.data.openid == item.db_openid){
+            that.setData({
+              isBaoming : true,
+              baomingBtn: "取消报名",
+            })
+          }
+          var usersignupinfo = {
+            db_avatarUrl: item.db_avatarUrl,
+            db_avtivityid: item.db_avtivityid,
+            db_openid: item.db_openid
+          }
+          allUserSignUpInfoTmp.push(usersignupinfo)
+        }
+        that.setData({
+          allUserSignUpInfo:allUserSignUpInfoTmp
+        })
+        console.log("getAllUserSignUpInfo 并 设置成功，数据如下")
+        console.log(that.data.allUserSignUpInfo)
+
       },
       fail: err => {
         wx.showToast({
           icon: 'none',
           title: '调用失败',
         })
-        console.error('[云函数] [sum] 调用失败：', err)
+        console.error('[云函数] [getAllUserSignUpInfo] 调用失败：', err)
       }
     })
   }

@@ -11,14 +11,19 @@ const db = cloud.database({
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   var openid = wxContext.OPENID
-  var myavtivityid = event.avtivityid
-  // 获取玩家是否已经报名
+  var myavatarUrl = event.avatarUrl
+  var myavtivityid =  event.avtivityid
   try {
-    return await db.collection('usersignupdb').where({
-      db_avtivityid: myavtivityid,
-      db_openid: openid,
-    }).remove()
+    return await db.collection('usersignupdb').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        db_avtivityid: myavtivityid,
+        db_openid: openid,
+        db_avatarUrl: myavatarUrl
+      }
+    })
   } catch (e) {
     console.error(e)
+    return e
   }
 }
