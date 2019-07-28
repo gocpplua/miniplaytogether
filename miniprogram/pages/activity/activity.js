@@ -265,8 +265,17 @@ Page({
           else{
             var result = JSON.stringify(res.result)
             console.log(result)
-            wx.showToast({
-              title: '报名成功',
+            wx.showModal({
+              title: '活动报名成功',
+              content: '请及时加发布者陈琦微信(zjut-cq)，将你拉入活动群',
+              showCancel:false,
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
             })
           }
 
