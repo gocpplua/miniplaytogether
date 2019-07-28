@@ -1,6 +1,7 @@
 // pages/activity/activity.js
 const testDB = wx.cloud.database({
-  env: 'test-52nlc'
+  //env: 'test-52nlc'
+  env: 'qiumingshan'
 })
 const app = getApp()
 
@@ -208,7 +209,7 @@ Page({
           })
 
           var text = "点击报名"
-          if (that.data.allUserSignUpInfo.length >= that.data.myActivitysInfo[0].db_planmaxpeople){
+          if (dataTmp.length >= that.data.myActivitysInfo[0].db_planmaxpeople){
             text = "报名已满(请联系组织者)"
           }
 
@@ -327,7 +328,7 @@ Page({
         var text = "取消报名"
         if (!bBaoming)
         {
-          if (nBaomigCount >= this.data.myActivitysInfo[0].db_planmaxpeople){
+          if (allUserSignUpInfoTmp.length >= this.data.myActivitysInfo[0].db_planmaxpeople){
             text = "报名已满(请联系组织者)"
           }
           else

@@ -38,3 +38,5 @@
   <map id="mapQQ" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" bindregionchange="bindchangeTap"></map>
 </view>
 
+
+

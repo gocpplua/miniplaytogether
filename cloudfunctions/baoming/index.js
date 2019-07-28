@@ -4,7 +4,8 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 const db = cloud.database({
-  env: 'test-52nlc'
+  //env: 'test-52nlc'
+  env:'qiumingshan'
 })
 
 // 云函数入口函数
