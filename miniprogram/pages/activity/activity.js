@@ -266,8 +266,8 @@ Page({
             var result = JSON.stringify(res.result)
             console.log(result)
             wx.showModal({
-              title: '活动报名成功',
-              content: '请及时加发布者陈琦微信(zjut-cq)，将你拉入活动群',
+              title: '差一步就报名成功',
+              content: '请及时加发布者陈琦微信(zjut-cq)，将你拉入活动群,否则报名无效',
               showCancel:false,
               success(res) {
                 if (res.confirm) {
