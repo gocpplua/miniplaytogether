@@ -17,7 +17,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "和秋名山一起玩",
+    "navigationBarTitleText": "和秋名山社一起玩",
     "navigationBarTextStyle": "black"
   },
   "permission": {
@@ -25,25 +25,7 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "tabBar": {
-    "list": [{
-        "pagePath": "pages/activity/activity",
-        "text": "当前活动"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "我的藏书"
-      },
-    {
-      "pagePath": "pages/scanCode/scanCode",
-      "text": "扫码加书"
-    },
-    {
-      "pagePath": "pages/publish/publish",
-      "text": "发布活动"
-    }
-    ]
-  },
+
 
   "sitemapLocation": "sitemap.json"
 }
