@@ -11,6 +11,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nodes: [{
+      name: 'div',
+      attrs: {
+        class: 'div_class',
+        style: 'line-height: 30px; color: black;'
+      },
+      children: [{
+        type: 'text',
+        text: '当前报名人数:'
+      }]
+    }],
     activityInfo:"秋名山社 周三18-21",
     avatarUrl:[], //[{}]
     openid: '',
@@ -59,6 +70,10 @@ Page({
    */
   onShow: function () {
     console.log('onShow') 
+    if(this.data.openid != ""){
+      console.log("onshow 中getAllUserSignUpInfo")
+      this.getAllUserSignUpInfo()
+    }
   },
 
   /**
@@ -100,14 +115,14 @@ Page({
     if (res.from == 'button'){
       if(res.target.id == 1){
         return {
-          title: this.data.activityInfo,
+          title: this.data.myActivitysInfo[0].db_title,
           path:'/pages/activity/activity?param=' + 12
         }
       }
     }
     else{
       return {
-        title: this.data.activityInfo
+        title: this.data.myActivitysInfo[0].db_title
       }
     }
   },
