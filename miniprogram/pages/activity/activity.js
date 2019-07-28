@@ -206,10 +206,16 @@ Page({
               dataTmp.push(e)
             }
           })
+
+          var text = "点击报名"
+          if (that.data.allUserSignUpInfo.length >= that.data.myActivitysInfo[0].db_planmaxpeople){
+            text = "报名已满(请联系组织者)"
+          }
+
           that.setData(
             {
               isBaoming: false,
-              baomingBtn: "点击报名",
+              baomingBtn: text,
               allUserSignUpInfo: dataTmp
             }
           )
@@ -300,16 +306,15 @@ Page({
         }
         console.log(JSON.stringify(data))
         var allUserSignUpInfoTmp = []
-        for (let i = 0; i < data.length; i++) {
+        var bBaoming = false
+        var nBaomigCount = data.length
+        for (let i = 0; i < nBaomigCount; i++) {
           var item = data[i]
           console.log(item);
 
           // 本人是否报名
           if (that.data.openid == item.db_openid){
-            that.setData({
-              isBaoming : true,
-              baomingBtn: "取消报名",
-            })
+            bBaoming = true
           }
           var usersignupinfo = {
             db_avatarUrl: item.db_avatarUrl,
@@ -318,6 +323,24 @@ Page({
           }
           allUserSignUpInfoTmp.push(usersignupinfo)
         }
+
+        var text = "取消报名"
+        if (!bBaoming)
+        {
+          if (nBaomigCount >= this.data.myActivitysInfo[0].db_planmaxpeople){
+            text = "报名已满(请联系组织者)"
+          }
+          else
+          {
+            text = "点击报名"
+          }
+        }
+        that.setData({
+          isBaoming: bBaoming,
+          baomingBtn: text,
+          allUserSignUpInfo: allUserSignUpInfoTmp
+        })
+
         that.setData({
           allUserSignUpInfo:allUserSignUpInfoTmp
         })
