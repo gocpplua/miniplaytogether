@@ -312,6 +312,9 @@ Page({
 
     var that = this
     var myavtivityid = this.data.myActivitysInfo[0].db_avtivityid
+    wx.showLoading({
+      title:"报名信息更新中..."
+    })
     wx.cloud.callFunction({
       name: 'getAllUserSignUpInfo', // 云函数名字
       data: {  // 云函数参数
@@ -371,12 +374,13 @@ Page({
         })
         console.log("getAllUserSignUpInfo 并 设置成功，数据如下")
         console.log(that.data.allUserSignUpInfo)
+        wx.hideLoading()
 
       },
       fail: err => {
         wx.showToast({
           icon: 'none',
-          title: '调用失败',
+          title: '更新报名信息失败,请重新打开小程序',
         })
         console.error('[云函数] [getAllUserSignUpInfo] 调用失败：', err)
       }
