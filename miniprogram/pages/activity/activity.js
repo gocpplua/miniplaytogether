@@ -195,12 +195,16 @@ Page({
     if (this.data.isBaoming) {
       // 玩家已经报名，此时点击这个按钮是取消报名的意思 
       var that = this
+      wx.showLoading({
+        title: "取消报名中..."
+      })
       wx.cloud.callFunction({
         name: 'cancelBaoming', // 云函数名字
         data: {  // 云函数参数
           avtivityid: myavtivityid
         },
         success: res => {
+          wx.hideLoading()
           console.log("cancelBaoming return succes")
           console.log(res)
           if (!res.result) {
@@ -237,6 +241,7 @@ Page({
           )
         },
         fail: err => {
+          wx.hideLoading()
           wx.showToast({
             icon: 'none',
             title: '调用失败',
@@ -248,6 +253,9 @@ Page({
     else{
       // 报名
       var that = this
+      wx.showLoading({
+        title: "报名中..."
+      })
       wx.cloud.callFunction({
         name: 'baomingactivity', // 云函数名字
         data: {  // 云函数参数
@@ -255,6 +263,7 @@ Page({
           avtivityid: myavtivityid
         },
         success: res => {
+          wx.hideLoading()
           console.log("baomingactivity return succes")
           console.log(res)
           if (!res.result){
@@ -296,6 +305,7 @@ Page({
 
         },
         fail: err => {
+          wx.hideLoading()
           wx.showToast({
             icon: 'none',
             title: '调用失败',
