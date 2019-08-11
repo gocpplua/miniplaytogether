@@ -1,10 +1,13 @@
 // pages/mainpage/mainpage.js
+// 功能点：
+// 1、轮播图：使用swiper
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    activityTypePicPath : '../../images/mainpage/type.png'
 
   },
 
@@ -69,5 +72,9 @@ Page({
    */
   onSignUp:function(){
 
+  },
+
+  clickOneActivity:function(){
+    console.log("clickOneActivity")
   }
 })
