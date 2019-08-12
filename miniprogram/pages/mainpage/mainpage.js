@@ -1,21 +1,44 @@
 // pages/mainpage/mainpage.js
 // 功能点：
 // 1、轮播图：使用swiper
+
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    activityTypePicPath : '../../images/mainpage/type.png'
-
+    activityTypePicPath : '../../images/mainpage/type.png',
+    myActivitysInfo:[], // 所有活动数据
+    openid: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 每一次打开界面的时候获取所有活动的信息
+    console.log('mainpage onLoad')
+    var that = this
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        that.setData({
+          openid: res.result.openid
+        })
+        console.log('mainpage login 成功')
+        that.getActivity()
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '获取 openid 失败，请检查是否有部署 login 云函数',
+        })
+        console.log('[云函数] [login] 获取 openid 失败，请检查是否有部署云函数，错误信息：', err)
+      }
+    })
   },
 
   /**
@@ -29,7 +52,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 获取
   },
 
   /**
@@ -74,7 +97,30 @@ Page({
 
   },
 
-  clickOneActivity:function(){
-    console.log("clickOneActivity")
+  // 获取所有的活动信息
+  getActivity:function(){
+    var that = this
+    const activity = app.globalData.db.collection("activitydb")
+    activity.get({
+      success:function(res){
+        console.log("getActivity success")
+
+        let dataLen = res.data.length
+        console.log("共查询到活动数目:", dataLen)
+        var myActivitysInfoTmp = []
+        for(let i = 0; i < dataLen; i++){
+          console.log("第", i+1, "条:", res.data[i])
+          myActivitysInfoTmp.push(res.data[i])
+        }
+        that.setData({
+          myActivitysInfo: myActivitysInfoTmp
+        })
+      }
+    })
+  },
+
+  clickOneActivity:function(event){
+    console.log("clickOneActivity", event)
+    console.log("activity _id:", event.currentTarget.dataset.activityinfo._id)
   }
 })

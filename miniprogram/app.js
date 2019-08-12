@@ -10,6 +10,12 @@ App({
       })
     }
 
+    const g_activityDB = wx.cloud.database({
+      env: 'test-52nlc'
+      //env: 'qiumingshan'
+    })
+
     this.globalData = {}
+    this.globalData["db"] = g_activityDB
   }
 })
