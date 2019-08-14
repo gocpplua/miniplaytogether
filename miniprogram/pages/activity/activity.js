@@ -1,10 +1,5 @@
 // pages/activity/activity.js
-const testDB = wx.cloud.database({
-  //env: 'test-52nlc'
-  env: 'qiumingshan'
-})
 const app = getApp()
-
 Page({
 
   /**
@@ -27,7 +22,7 @@ Page({
     openid: '',
     isBaoming:false,
     baomingBtn:"点击报名",
-    myActivitysInfo:[],
+    myActivitysInfo:{},
     allUserSignUpInfo:[]
   },
 
@@ -35,7 +30,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad')
+    let translateData = JSON.parse(options.data) 
+    console.log('activity onLoad', translateData)
+    app.myActivitysInfo = 
+    this.setData({
+      myActivitysInfo: translateData
+    })
+    console.log(this.data.myActivitysInfo)
     var that = this
     wx.cloud.callFunction({
       name: 'login',
@@ -45,8 +46,7 @@ Page({
           openid: res.result.openid
         })
         console.log('login 成功')
-        console.log(that.data)
-        that.getActivity()
+        that.getAllUserSignUpInfo()
       },
       fail: err => {
         wx.showToast({
@@ -62,14 +62,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log('onReady')
+    console.log('activity onReady')
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('onShow') 
+    console.log('activity onShow') 
     if(this.data.openid != ""){
       console.log("onshow 中getAllUserSignUpInfo")
       this.getAllUserSignUpInfo()
@@ -115,22 +115,22 @@ Page({
     if (res.from == 'button'){
       if(res.target.id == 1){
         return {
-          title: this.data.myActivitysInfo[0].db_title,
+          title: this.data.myActivitysInfo.db_title,
           path:'/pages/activity/activity?param=' + 12
         }
       }
     }
     else{
       return {
-        title: this.data.myActivitysInfo[0].db_title
+        title: this.data.myActivitysInfo.db_title
       }
     }
   },
 
   onClickAddress:function(){
       wx.openLocation({
-        latitude: this.data.myActivitysInfo[0].db_latitude,
-        longitude: this.data.myActivitysInfo[0].db_longitude,
+        latitude: this.data.myActivitysInfo.db_latitude,
+        longitude: this.data.myActivitysInfo.db_longitude,
       })
     },
 
@@ -153,26 +153,6 @@ Page({
       }
     })
   },
-
-  // 获取所有的活动信息
-  getActivity:function(){
-    var that = this
-    const activity = testDB.collection("activitydb")
-    activity.get({
-      success:function(res){
-        console.log("getActivity success")
-        console.log(res.data[0])
-        var myActivityInfoTmp = res.data[0]
-        var myActivitysInfoTmp = []
-        myActivitysInfoTmp.push(myActivityInfoTmp)
-        that.setData({
-          myActivitysInfo: myActivitysInfoTmp
-        })
-        console.log(that.data.myActivitysInfo)
-        that.getAllUserSignUpInfo()
-      }
-    })
-  },
   
   //报名活动，调用远端云函数 baomingactivity
   baomingActivity:function(e){
@@ -191,7 +171,7 @@ Page({
   // 已经授权
   // 得到玩家信息
     var myavatarUrl = e.detail.userInfo.avatarUrl // 玩家头像信息
-    var myavtivityid = this.data.myActivitysInfo[0].db_avtivityid
+    var myavtivityid = this.data.myActivitysInfo.db_avtivityid
     if (this.data.isBaoming) {
       // 玩家已经报名，此时点击这个按钮是取消报名的意思 
       var that = this
@@ -228,7 +208,7 @@ Page({
           })
 
           var text = "点击报名"
-          if (dataTmp.length >= that.data.myActivitysInfo[0].db_planmaxpeople){
+          if (dataTmp.length >= that.data.myActivitysInfo.db_planmaxpeople){
             text = "报名已满(请联系组织者)"
           }
 
@@ -321,7 +301,7 @@ Page({
     console.log('getAllUserSignUpInfo')
 
     var that = this
-    var myavtivityid = this.data.myActivitysInfo[0].db_avtivityid
+    var myavtivityid = this.data.myActivitysInfo.db_avtivityid
     wx.showLoading({
       title:"报名信息更新中..."
     })
@@ -365,7 +345,7 @@ Page({
         var text = "取消报名"
         if (!bBaoming)
         {
-          if (allUserSignUpInfoTmp.length >= this.data.myActivitysInfo[0].db_planmaxpeople){
+          if (allUserSignUpInfoTmp.length >= this.data.myActivitysInfo.db_planmaxpeople){
             text = "报名已满(请联系组织者)"
           }
           else

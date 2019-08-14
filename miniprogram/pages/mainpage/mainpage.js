@@ -104,7 +104,7 @@ Page({
     activity.get({
       success:function(res){
         console.log("getActivity success")
-
+        console.log("res.data", res.data)
         let dataLen = res.data.length
         console.log("共查询到活动数目:", dataLen)
         var myActivitysInfoTmp = []
@@ -122,5 +122,12 @@ Page({
   clickOneActivity:function(event){
     console.log("clickOneActivity", event)
     console.log("activity _id:", event.currentTarget.dataset.activityinfo._id)
+    wx.navigateTo({
+      url: '../activity/activity?data=' + JSON.stringify(event.currentTarget.dataset.activityinfo),
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        console.log(res)
+      }
+    })
   }
 })

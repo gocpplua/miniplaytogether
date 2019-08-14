@@ -7,10 +7,10 @@
   <image 
       style="width: 750rpx; height: 150px; background-color: #eeeeee;" 
       mode="scaleToFill"
-      src= "{{ myActivitysInfo[0].db_picpath }}">
+      src= "{{ myActivitysInfo.db_picpath }}">
   </image>
   <van-cell-group>
-    <van-cell title="{{ myActivitysInfo[0].db_title }}" value="" label="{{ myActivitysInfo[0].db_content }}" border="{{ true }}" />
+    <van-cell title="{{ myActivitysInfo.db_title }}" value="" label="{{ myActivitysInfo.db_content }}" border="{{ true }}" />
   </van-cell-group>
 
   <view class="container">
@@ -25,7 +25,7 @@
       left-icon="location-o"
       label=""
       icon="arrow"
-      placeholder="{{ myActivitysInfo[0].db_address }}"
+      placeholder="{{ myActivitysInfo.db_address }}"
       bind:click-icon="onClickAddress"
     />
       <van-field
@@ -33,7 +33,7 @@
       readonly
       left-icon="clock-o"
       label=""
-      placeholder="{{ myActivitysInfo[0].db_endttime }}"
+      placeholder="{{ myActivitysInfo.db_endttime }}"
     />
     </van-cell-group>
     
@@ -44,7 +44,7 @@
 
   <view class="weui-cell">
       <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-          <image src="{{ myActivitysInfo[0].db_publisher.db_avatarUrl }}" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;"/>
+          <image src="{{ myActivitysInfo.db_publisher.db_avatarUrl }}" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;"/>
       </view>
       <view class="weui-cell__bd">
           <view>陈琦</view>
@@ -59,7 +59,7 @@
   </view>
 
     <van-cell-group>
-      <van-cell title="已报名:({{allUserSignUpInfo.length}}/{{myActivitysInfo[0].db_planmaxpeople}})" value=""  border="{{ false }}" />
+      <van-cell title="已报名:({{allUserSignUpInfo.length}}/{{myActivitysInfo.db_planmaxpeople}})" value=""  border="{{ false }}" />
       <view style='display:flex; flex-wrap:wrap;width:100%, height:auto' >
         <view style='margin:2px' wx:for="{{allUserSignUpInfo}}">
           <!-- 头像正方形 -->
@@ -75,7 +75,7 @@
   <!-- flex布局，参考：weui.wxss -->
   <view class = 'bottombtn' style='display:flex'>
     <button class="placeholder" open-type="share" id = "1"> 分享 </button>
-    <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="baomingActivity" disabled="{{isBaoming?false:allUserSignUpInfo.length>=myActivitysInfo[0].db_planmaxpeople}}"> {{baomingBtn}} </button>
+    <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="baomingActivity" disabled="{{isBaoming?false:allUserSignUpInfo.length>=myActivitysInfo.db_planmaxpeople}}"> {{baomingBtn}} </button>
   </view>
 </view>
 
