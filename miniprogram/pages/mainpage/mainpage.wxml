@@ -15,16 +15,13 @@
         <image class='type' src='{{activityTypePicPath}}'></image>
       </view>
       <view class="right">
-        <view class="title">悦动体育周六下午畅打场</view>
+        <view class="title">{{item.db_title}}</view>
         <view class="tip">
-          <view class="tip-info">热水洗澡</view>
-          <view class="tip-info">停车收费便宜</view>
-          <view class="tip-info">自带球拍</view>
-          <view class="tip-info">不提供球</view>
+          <view class="tip-info">{{item.db_content}}</view>
         </view>
-        <view class="address">滨江区体育馆</view>
-        <view class="time">08-12 12：00-18:00</view>
-        <view class="signup">30/30 已报名</view>
+        <view class="address">{{item.db_address}}</view>
+        <view class="time">{{item.db_endttime}}</view>
+        <view class="signup">{{item.db_actpeople}}/{{item.db_planmaxpeople}} 已报名</view>
       </view>
     </view>
   </view>
