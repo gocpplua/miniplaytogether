@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/mainpage/mainpage",
+    "pages/intro/intro",
     "pages/activity/activity",
     "pages/publish/publish",
-    "pages/mainpage/mainpage",    
     "pages/scanCode/scanCode",
     "pages/index/index",
     "pages/userConsole/userConsole",
@@ -25,7 +26,18 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/mainpage/mainpage",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/intro/intro",
+        "text": "介绍"
+      }
+    ]
+  },
 
   "sitemapLocation": "sitemap.json"
 }
