@@ -127,6 +127,9 @@ Page({
       success: function (res) {
         // 通过eventChannel向被打开页面传送数据
         console.log(res)
+      },
+      fail:function(res){
+        console.log(res)
       }
     })
   }
