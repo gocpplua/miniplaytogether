@@ -108,7 +108,7 @@ Page({
         let dataLen = res.data.length
         console.log("共查询到活动数目:", dataLen)
         var myActivitysInfoTmp = []
-        for(let i = 0; i < dataLen; i++){
+        for (let i = dataLen - 1; i >= 0; i--){
           console.log("第", i+1, "条:", res.data[i])
           myActivitysInfoTmp.push(res.data[i])
         }
