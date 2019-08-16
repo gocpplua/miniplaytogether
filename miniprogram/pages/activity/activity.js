@@ -315,11 +315,21 @@ Page({
         console.log(res)
         if (!res.result) {
           console.log("getAllUserSignUpInfo没有获取到数据1")
+          wx.hideLoading()
+          wx.showToast({
+            icon:'none',
+            title: '更新失败，请重新打开小程序',
+          })
           return
         }
         var data = res.result.data
         if (data.length == 0){
           console.log("getAllUserSignUpInfo没有获取到数据2")
+          wx.hideLoading()
+          wx.showToast({
+            icon: 'none',
+            title: '更新失败，请重新打开小程序',
+          })
           return
         }
         console.log(JSON.stringify(data))
