@@ -52,7 +52,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 获取
+    console.log('mainpage onShow')
+    if (this.data.openid != "") {
+      console.log("onshow 中 getAllActivitysInfo")
+      this.getActivity()
+    }
   },
 
   /**
@@ -100,21 +104,43 @@ Page({
   // 获取所有的活动信息
   getActivity:function(){
     var that = this
-    const activity = app.globalData.db.collection("activitydb")
-    activity.get({
-      success:function(res){
-        console.log("getActivity success")
-        console.log("res.data", res.data)
-        let dataLen = res.data.length
+    wx.showLoading({
+      title: "报名信息更新中..."
+    })
+    wx.cloud.callFunction({
+      name: 'getAllActivitysInfo', // 云函数名字
+      success: res => {
+        console.log("getActivity return succes:")
+        console.log(res)
+        if (!res.result) {
+          console.log("getActivity 没有获取到数据1")
+          wx.hideLoading()
+        }
+        var data = res.result.data
+        if (data.length == 0) {
+          console.log("getActivity 没有获取到数据2")
+          wx.hideLoading()
+          return
+        }
+        console.log(JSON.stringify(data))
+        let dataLen = data.length
         console.log("共查询到活动数目:", dataLen)
         var myActivitysInfoTmp = []
-        for (let i = dataLen - 1; i >= 0; i--){
-          console.log("第", i+1, "条:", res.data[i])
-          myActivitysInfoTmp.push(res.data[i])
+        for (let i = dataLen - 1; i >= 0; i--) {
+          console.log("第", i + 1, "条:", data[i])
+          myActivitysInfoTmp.push(data[i])
         }
         that.setData({
           myActivitysInfo: myActivitysInfoTmp
         })
+        wx.hideLoading()
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '获取活动失败,请重新打开小程序',
+        })
+        console.error('[云函数] [getAllActivitysInfo] 调用失败：', err)
       }
     })
   },
