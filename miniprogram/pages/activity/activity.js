@@ -208,15 +208,17 @@ Page({
           })
 
           var text = "点击报名"
-          if (dataTmp.length >= that.data.myActivitysInfo.db_planmaxpeople){
+          if (that.data.myActivitysInfo.db_actpeople >= that.data.myActivitysInfo.db_planmaxpeople){
             text = "报名已满(请联系组织者)"
           }
-
+          let myActivitysInfoTmp = that.data.myActivitysInfo
+          myActivitysInfoTmp.db_actpeople = dataTmp.length
           that.setData(
             {
               isBaoming: false,
               baomingBtn: text,
-              allUserSignUpInfo: dataTmp
+              allUserSignUpInfo: dataTmp,
+              myActivitysInfo: myActivitysInfoTmp
             }
           )
         },
@@ -275,11 +277,14 @@ Page({
           }
           that.data.allUserSignUpInfo.push(usersignupinfo)
           console.log(that.data.allUserSignUpInfo)
+          let myActivitysInfoTmp = that.data.myActivitysInfo
+          myActivitysInfoTmp.db_actpeople = that.data.allUserSignUpInfo.length
           that.setData(
             {
               isBaoming: true,
               baomingBtn: "取消报名",
-              allUserSignUpInfo: that.data.allUserSignUpInfo
+              allUserSignUpInfo: that.data.allUserSignUpInfo,
+              myActivitysInfo: myActivitysInfoTmp
             }
           )
 
@@ -346,7 +351,7 @@ Page({
         var text = "取消报名"
         if (!bBaoming)
         {
-          if (allUserSignUpInfoTmp.length >= this.data.myActivitysInfo.db_planmaxpeople){
+          if (that.data.myActivitysInfo.db_actpeople >= that.data.myActivitysInfo.db_planmaxpeople){
             text = "报名已满(请联系组织者)"
           }
           else
@@ -357,11 +362,7 @@ Page({
         that.setData({
           isBaoming: bBaoming,
           baomingBtn: text,
-          allUserSignUpInfo: allUserSignUpInfoTmp
-        })
-
-        that.setData({
-          allUserSignUpInfo:allUserSignUpInfoTmp
+          allUserSignUpInfo: allUserSignUpInfoTmp,
         })
         console.log("getAllUserSignUpInfo 并 设置成功，数据如下")
         console.log(that.data.allUserSignUpInfo)

@@ -59,7 +59,7 @@
   </view>
 
     <van-cell-group>
-      <van-cell title="已报名:({{allUserSignUpInfo.length}}/{{myActivitysInfo.db_planmaxpeople}})" value=""  border="{{ false }}" />
+      <van-cell title="已报名:({{myActivitysInfo.db_actpeople}}/{{myActivitysInfo.db_planmaxpeople}})" value=""  border="{{ false }}" />
       <view style='display:flex; flex-wrap:wrap;width:100%, height:auto' >
         <view style='margin:2px' wx:for="{{allUserSignUpInfo}}">
           <!-- 头像正方形 -->
@@ -75,7 +75,7 @@
   <!-- flex布局，参考：weui.wxss -->
   <view class = 'bottombtn' style='display:flex'>
     <button class="placeholder" open-type="share" id = "1"> 分享 </button>
-    <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="baomingActivity" disabled="{{isBaoming?false:allUserSignUpInfo.length>=myActivitysInfo.db_planmaxpeople}}"> {{baomingBtn}} </button>
+    <button class="weui-flex__item placeholder" open-type="getUserInfo" bindgetuserinfo="baomingActivity" disabled="{{isBaoming?false:myActivitysInfo.db_actpeople>=myActivitysInfo.db_planmaxpeople}}"> {{baomingBtn}} </button>
   </view>
 </view>
 
