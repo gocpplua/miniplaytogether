@@ -13,7 +13,7 @@
 	},
 	"appid": "wx5d8f23eed300122e",
 	"projectname": "miniplaytogether",
-	"libVersion": "2.3.2",
+	"libVersion": "2.8.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
