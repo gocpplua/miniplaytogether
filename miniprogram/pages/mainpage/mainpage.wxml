@@ -1,10 +1,9 @@
 <!--pages/mainpage/mainpage.wxml-->
 <!-- 添加轮播图 -->
 <swiper class='lunbo' indicator-active-color='true' autoplay='true' interval='3000'>
+<swiper-item> <image src= '../../images/mainpage/activity_2_安徽宏村.jpg' /> </swiper-item>
+<swiper-item> <image src= '../../images/mainpage/activity_1_新沙岛.jpg' /> </swiper-item>
 <swiper-item> <image src= '../../images/code-db-inc-dec.png' /> </swiper-item>
-<swiper-item> <image src= '../../images/create-collection.png' /> </swiper-item>
-<swiper-item> <image src= '../../images/code-db-inc-dec.png' /> </swiper-item>
-<swiper-item> <image src= '../../images/console-entrance.png' /> </swiper-item>
 </swiper>
 
 <!-- 2019.08.11 start:军豪活动列表样式 -->
