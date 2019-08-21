@@ -1,0 +1,10 @@
+<!--pages/about/about.wxml-->
+<view class="container">
+  <view class="up">
+  <text class="intro">关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社</text>
+  </view>
+  <view class="down">
+    <view class="btn"><button class="phone" type="primary"><icon type="download" size="40"></icon>拨打电话</button></view>
+    <view class="btn"><button style="color: #179B16;" class="wechat" type="default"><icon type="download" size="40"></icon>添加微信</button></view>
+  </view>
+</view>

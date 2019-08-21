@@ -1,4 +1,4 @@
-// pages/intro/intro.js
+// pages/about/about.js
 Page({
 
   /**
@@ -64,18 +64,23 @@ Page({
 
   },
   /**
-   * 根据id值跳转到关于和问题反馈页
+   * 根据id值打电话或者复制微信号
    */
-  jumpabout:function(e){
+  ontap:function(e){
     let id = e.target.dataset.id;
     if (id == "1") {
-      wx.navigateTo({
-        url: '/pages/about/about',
+      wx.makePhoneCall({
+        phoneNumber: '18800000000',
       });
     } else if (id == "2") {
-      wx.navigateTo({
-        url: '/pages/question/question',
-      });
+      wx.setClipboardData({
+        data: 'hhhhhhh',
+        success:function(){
+          wx.showToast({
+            title: '已复制微信号到剪贴板',
+          })
+        }
+      })
     }
   }
 })
