@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activityTypePicPath : '../../images/mainpage/type.png',
+    activityTypePicPath : '../../images/mainpage/type.jpg',
     myActivitysInfo:[], // 所有活动数据
     openid: '',
   },
