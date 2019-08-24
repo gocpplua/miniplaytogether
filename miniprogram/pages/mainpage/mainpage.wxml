@@ -24,7 +24,10 @@
         </view>
         <view class="address">{{item.db_address}}</view>
         <view class="time">{{item.db_endttime}}</view>
-        <view class="signup">{{item.db_actpeople}}/{{item.db_planmaxpeople}} 已报名</view>
+        <view class="signup">
+          <view wx:if="{{item.db_status == 2}}"> 活动已结束 </view>
+          <view wx:else> {{item.db_actpeople}}/{{item.db_planmaxpeople}} 已报名 </view>
+        </view>
       </view>
     </view>
   </view>

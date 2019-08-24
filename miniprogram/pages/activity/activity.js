@@ -159,6 +159,25 @@ Page({
     console.log('baomingActivity')
     console.log(e)
 
+    if (this.data.myActivitysInfo.db_status == 2){
+      wx.showModal({
+        title: '来自秋名山的提示',
+        confirmText:'返回大厅',
+        content: '活动已经结束了，无法进行报名/取消报名操作喽！',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateBack({
+              
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return;
+    }
+
     // 玩家点击报名，需要先进行授权
     if (!e.detail.userInfo) {
       // 用户按了拒绝按钮
