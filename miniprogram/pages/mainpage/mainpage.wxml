@@ -3,7 +3,7 @@
 <swiper class='lunbo' indicator-active-color='true' autoplay='true' interval='3000'>
   <swiper-item> <image src= '../../images/mainpage/activity_2_安徽宏村.jpg' /> </swiper-item>
   <swiper-item> <image src= '../../images/mainpage/activity_1_新沙岛.jpg' /> </swiper-item>
-  <swiper-item> <image src= '../../images/mainpage/正式上线啦.jpg' /> </swiper-item>
+  <swiper-item> <image src= '../../images/mainpage/正式上线啦.png' /> </swiper-item>
 </swiper>
 
 <!-- 2019.08.11 start:军豪活动列表样式 -->
