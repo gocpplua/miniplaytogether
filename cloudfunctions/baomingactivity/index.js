@@ -2,7 +2,8 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init({
-  env: 'test-52nlc'
+  //env: 'test-52nlc'
+  env: 'qiumingshan'
 })
 
 const db = cloud.database()

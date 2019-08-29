@@ -112,8 +112,9 @@ Page({
         wx.cloud.uploadFile({
           cloudPath: 'qq.jpg', // 上传至云端的路径
           config:{ // 上传到指定的存储位置
-            //env: 'test-52nlc'
-            env: 'qiumingshan'},
+            env: 'test-52nlc'
+            //env: 'qiumingshan'
+            },
           filePath: tempFilePaths[0], // 小程序临时文件路径
           success: res => {
             // 返回文件 ID

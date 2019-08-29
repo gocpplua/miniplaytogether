@@ -8,7 +8,8 @@ App({
     } else {
       wx.cloud.init({
         traceUser: true,
-        env: 'test-52nlc'
+        //env: 'test-52nlc'
+        env: 'qiumingshan'
       })
       const g_activityDB = wx.cloud.database()
       this.globalData["db"] = g_activityDB

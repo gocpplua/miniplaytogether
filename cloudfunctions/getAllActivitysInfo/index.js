@@ -4,8 +4,8 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 const db = cloud.database({
-  env: 'test-52nlc'
-  //env: 'qiumingshan'
+  //env: 'test-52nlc'
+  env: 'qiumingshan'
 })
 const MAX_LIMIT = 20
 // 云函数入口函数
