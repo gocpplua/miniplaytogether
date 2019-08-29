@@ -226,18 +226,24 @@ Page({
             }
           })
 
-          var text = "点击报名"
-          if (that.data.myActivitysInfo.db_actpeople >= that.data.myActivitysInfo.db_planmaxpeople){
-            text = "报名已满(请联系组织者)"
-          }
+          
           let myActivitysInfoTmp = that.data.myActivitysInfo
           myActivitysInfoTmp.db_actpeople = dataTmp.length
           that.setData(
             {
               isBaoming: false,
-              baomingBtn: text,
               allUserSignUpInfo: dataTmp,
               myActivitysInfo: myActivitysInfoTmp
+            }
+          )
+
+          var text = "点击报名"
+          if (that.data.myActivitysInfo.db_actpeople >= that.data.myActivitysInfo.db_planmaxpeople) {
+            text = "报名已满(请联系组织者)"
+          }
+          that.setData(
+            {
+              baomingBtn: text,
             }
           )
         },
