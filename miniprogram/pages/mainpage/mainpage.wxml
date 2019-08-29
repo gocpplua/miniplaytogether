@@ -1,14 +1,18 @@
 <!--pages/mainpage/mainpage.wxml-->
 <!-- 添加轮播图 -->
 <swiper class='lunbo' indicator-active-color='true' autoplay='true' interval='3000'>
-<swiper-item> <image src= '../../images/mainpage/上线啦.png' /> </swiper-item>
-<swiper-item> <image src= '../../images/mainpage/activity_2_安徽宏村.jpg' /> </swiper-item>
-<swiper-item> <image src= '../../images/mainpage/activity_1_新沙岛.jpg' /> </swiper-item>
+  <swiper-item> <image src= '../../images/mainpage/activity_2_安徽宏村.jpg' /> </swiper-item>
+  <swiper-item> <image src= '../../images/mainpage/activity_1_新沙岛.jpg' /> </swiper-item>
+  <swiper-item> <image src= '../../images/mainpage/正式上线啦.png' /> </swiper-item>
 </swiper>
 
 <!-- 2019.08.11 start:军豪活动列表样式 -->
 <view class="contain">
   <view wx:for="{{ myActivitysInfo }}" >
+    <view class="container">
+     <!-- 分割线 -->
+      <view class="divLine"></view>
+    </view>
     <view class='list' bindtap='clickOneActivity' data-activityinfo="{{item}}">
       <view class="left">
         <image class='type' src='{{activityTypePicPath}}'></image>
@@ -20,7 +24,10 @@
         </view>
         <view class="address">{{item.db_address}}</view>
         <view class="time">{{item.db_endttime}}</view>
-        <view class="signup">{{item.db_actpeople}}/{{item.db_planmaxpeople}} 已报名</view>
+        <view class="signup">
+          <view wx:if="{{item.db_status == 2}}"> 活动已结束 </view>
+          <view wx:else> {{item.db_actpeople}}/{{item.db_planmaxpeople}} 已报名 </view>
+        </view>
       </view>
     </view>
   </view>
