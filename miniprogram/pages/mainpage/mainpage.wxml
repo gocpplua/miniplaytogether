@@ -1,4 +1,7 @@
 <!--pages/mainpage/mainpage.wxml-->
+<van-notice-bar
+  text='秋名山社小程序正式上线了！想要"和秋名山社一起玩"的小伙伴赶紧报名。如有问题请大家第一时间联系社长,WeChat:zjut-cq！'
+/>
 <!-- 添加轮播图 -->
 <swiper class='lunbo' indicator-active-color='true' autoplay='true' interval='3000'>
   <swiper-item> <image src= '../../images/mainpage/activity_2_安徽宏村.jpg' /> </swiper-item>

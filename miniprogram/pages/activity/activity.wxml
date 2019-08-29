@@ -1,8 +1,5 @@
 <!--pages/activity/activity.wxml-->
 <view class='page' style='margin-bottom:50px'>
-<van-notice-bar
-  text='秋名山社小程序正式上线了！想要"和秋名山社一起玩"的小伙伴赶紧报名。毕竟是第一个版本，如有问题请大家第一时间联系社长,WeChat:zjut-cq！'
-/>
 <!-- 规定为 750rpx=屏幕宽度 -->
   <image 
       style="width: 750rpx; height: 150px; background-color: #eeeeee;" 
