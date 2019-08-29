@@ -2,9 +2,11 @@
 .up{
   height: auto;
   text-align: center;
+  padding-top: 20rpx;
 }
 .intro{
-  font-size: 28rpx;
+  font-size: 24rpx;
+  color: #666
 }
 .down{
   width: 100%;

@@ -9,6 +9,7 @@
 }
 .title{
   width: 100%;
+  color:#666;
 }
 .down{
   width: 100%;
@@ -19,11 +20,13 @@
   height: 60rpx;
   margin-left: 20rpx;
   border-bottom: 1px aliceblue solid;
+  color:#666;
 }
 .question{
   text-align: left;
   height: 60rpx;
   margin-left: 20rpx;
+  color:#666;
 }
 .icon-icon{
   position: absolute;

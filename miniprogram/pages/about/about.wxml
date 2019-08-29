@@ -1,10 +1,10 @@
 <!--pages/about/about.wxml-->
 <view class="container">
   <view class="up">
-  <text class="intro">关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社关于秋名山社</text>
+  <text class="intro">这是一个神奇的组织，在高大帅气的程序猿社长的带领下，还有2位貌美如花的运营小姐姐辅助下，2018年3月29日，我们的组织产生了，我们还有自己的公众号和logo呢！当然我们翻阅过黄历之后决定把我们的第一次活动日期2018年3月31日定为我们组织的正式生日！</text>
   </view>
   <view class="down">
-    <view class="btn"><button class="phone" type="primary"><icon type="download" size="40"></icon>拨打电话</button></view>
-    <view class="btn"><button style="color: #179B16;" class="wechat" type="default"><icon type="download" size="40"></icon>添加微信</button></view>
+    <view class="btn"><button class="phone" type="primary"><span class="icon icon-104"></span>拨打电话</button></view>
+    <view class="btn"><button style="color: #179B16;" class="wechat" type="default"><icon type="download" size="20"></icon>添加微信</button></view>
   </view>
 </view>

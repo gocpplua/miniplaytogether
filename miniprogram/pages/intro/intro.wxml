@@ -1,7 +1,7 @@
 <!--pages/intro/intro.wxml-->
 <view class="container">
   <view class="up">
-    <image class="icon-info"></image>
+    <image class="icon-info" src="../../images/mainpage/about.png"></image>
     <view class="title">世界那么大，我们一起去看看</view>
   </view>
   <view class="down">
