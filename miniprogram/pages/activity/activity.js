@@ -116,7 +116,7 @@ Page({
       if(res.target.id == 1){
         return {
           title: this.data.myActivitysInfo.db_title,
-          path:'/pages/activity/activity?param=' + 12
+          path:'/pages/mainpage/mainpage?param=' + 12
         }
       }
     }
