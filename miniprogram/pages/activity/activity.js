@@ -35,12 +35,19 @@ Page({
       this.gotoMainPage();
       return;
     }
-    let translateData = JSON.parse(options.data) 
-    console.log('activity onLoad translateData', translateData)
-    this.setData({
-      myActivitysInfo: translateData
-    })
-    console.log(this.data.myActivitysInfo)
+    try{
+      let translateData = JSON.parse(options.data)
+      console.log('activity onLoad translateData', translateData)
+      this.setData({
+        myActivitysInfo: translateData
+      })
+      console.log(this.data.myActivitysInfo)
+    }
+    catch(err){
+      console.log("onload catch:", err)
+      this.gotoMainPage();
+    }
+    
     var that = this
     wx.cloud.callFunction({
       name: 'login',
@@ -120,8 +127,8 @@ Page({
       if(res.target.id == 1){
         return {
           title: this.data.myActivitysInfo.db_title,
-          //path: '/pages/activity/activity?param=' + 12
-          path:'/pages/mainpage/mainpage?param=' + 12
+          path: '/pages/activity/activity?param=' + 12
+          //path:'/pages/mainpage/mainpage?param=' + 12
         }
       }
     }
