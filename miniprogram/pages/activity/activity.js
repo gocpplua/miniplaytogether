@@ -32,16 +32,8 @@ Page({
   onLoad: function (options) {
     console.log('activity onLoad options', options)
     if (!options.data) {
-      wx.reLaunch({
-        url: '../mainpage/mainpage',
-        success: function (res) {
-          // 通过eventChannel向被打开页面传送数据
-          console.log("activity to mainpage success", res)
-        },
-        fail:function(res){
-          console.log("activity to mainpage fail", res)
-        }
-      })
+      this.gotoMainPage();
+      return;
     }
     let translateData = JSON.parse(options.data) 
     console.log('activity onLoad translateData', translateData)
@@ -204,6 +196,10 @@ Page({
   // 得到玩家信息
     var myavatarUrl = e.detail.userInfo.avatarUrl // 玩家头像信息
     var myavtivityid = this.data.myActivitysInfo.db_avtivityid
+    if (!myavtivityid){
+      this.gotoMainPage();
+      return;
+    }
     if (this.data.isBaoming) {
       // 玩家已经报名，此时点击这个按钮是取消报名的意思 
       var that = this
@@ -292,6 +288,11 @@ Page({
             })
           }
           else{
+            if (res.result.errCode){
+              console.log('报名函数调用成功，但是实际上失败了! errCode:', res.result.errCode)
+              this.gotoMainPage();
+              return;
+            }
             var result = JSON.stringify(res.result)
             console.log(result)
             wx.showModal({
@@ -413,6 +414,19 @@ Page({
           title: '更新报名信息失败,请重新打开小程序',
         })
         console.error('[云函数] [getAllUserSignUpInfo] 调用失败：', err)
+      }
+    })
+  },
+
+  gotoMainPage:function(){
+    wx.reLaunch({
+      url: '../mainpage/mainpage',
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        console.log("activity to mainpage success", res)
+      },
+      fail: function (res) {
+        console.log("activity to mainpage fail", res)
       }
     })
   }

@@ -15,7 +15,12 @@ exports.main = async (event, context) => {
   var myavatarUrl = event.avatarUrl
   var myavtivityid =  event.avtivityid
   console.log('baomingactivity myavtivityid:', myavtivityid)
+  
   try {
+    if (!myavtivityid) {
+      console.log('baomingactivity myavtivityid is invalid:', myavtivityid)
+      throw { "errCode": 2, errMsg: '这个活动ID是无效的' }
+    }
     let userSignUpDatas = await db.collection('usersignupdb').add({
       // data 字段表示需新增的 JSON 数据
       data: {
