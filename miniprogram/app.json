@@ -29,5 +29,23 @@
     }
   },
  
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/mainpage/mainpage",
+        "text": "活动大厅",
+        "iconPath": "./images/tabbar/tabbar_home.png",
+        "selectedIconPath": "./images/tabbar/tabbar_home_select.png"
+      },
+      {
+        "pagePath": "pages/intro/intro",
+        "text": "我们",
+        "iconPath": "./images/tabbar/tabbar_we.png",
+        "selectedIconPath": "./images/tabbar/tabbar_we_select.png"
+      }
+    ]
+  },
+  
+
   "sitemapLocation": "sitemap.json"
 }

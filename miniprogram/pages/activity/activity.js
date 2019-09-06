@@ -30,9 +30,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('activity onLoad options', options)
+    if (!options.data) {
+      wx.reLaunch({
+        url: '../mainpage/mainpage',
+        success: function (res) {
+          // 通过eventChannel向被打开页面传送数据
+          console.log("activity to mainpage success", res)
+        },
+        fail:function(res){
+          console.log("activity to mainpage fail", res)
+        }
+      })
+    }
     let translateData = JSON.parse(options.data) 
-    console.log('activity onLoad', translateData)
-    app.myActivitysInfo = 
+    console.log('activity onLoad translateData', translateData)
     this.setData({
       myActivitysInfo: translateData
     })
@@ -116,6 +128,7 @@ Page({
       if(res.target.id == 1){
         return {
           title: this.data.myActivitysInfo.db_title,
+          //path: '/pages/activity/activity?param=' + 12
           path:'/pages/mainpage/mainpage?param=' + 12
         }
       }

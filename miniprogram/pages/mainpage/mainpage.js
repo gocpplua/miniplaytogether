@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     // 每一次打开界面的时候获取所有活动的信息
-    console.log('mainpage onLoad')
+    console.log('mainpage onLoad', options)
     var that = this
     wx.cloud.callFunction({
       name: 'login',
