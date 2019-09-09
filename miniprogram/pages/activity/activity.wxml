@@ -51,7 +51,7 @@
         <!-- <icon class="iconfont icon-weixin" bindtap='callwechat'></icon> -->
         <!-- <icon class="iconfont icon-weixin" bindtap='callphone'></icon> -->
         
-        <image src="../../images/phone.png" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;" bindtap='callphone'/>
+        <image src="../../images/phone.jpg" style="width: 50px; height: 50px; display: block; border-radius:50%;overflow:hidden;" bindtap='callphone'/>
       </view>
   </view>
 

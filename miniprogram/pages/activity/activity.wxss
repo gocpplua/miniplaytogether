@@ -15,8 +15,8 @@
     padding: 0 20px;/* 上内边距和下内边距是 0px, 右内边距和左内边距是 20px*/
     text-align: center;/* 把文本排列到中间 */
     background-color: #09BB07;
-    height: 2.3em;
-    line-height: 2.3em;
+    height: 50px;
+    line-height: 45px;
     color: #0e0d0d;
 }
 
