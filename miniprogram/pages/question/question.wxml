@@ -1,17 +1,12 @@
-<!--pages/intro/intro.wxml-->
+<!--pages/about/about.wxml-->
 <view class="container">
   <view class="up">
-    <image class="icon-info"></image>
-    <view class="title">世界那么大，我们一起去看看</view>
+  <text class="intro">关于秋名山的任何问题，请联系帅气的社长大人，社长大人会第一时间为您解答。同时，也欢迎大家提出意见，所有秋名山人都是一家人。
+  联系方式如下：
+  </text>
   </view>
   <view class="down">
-    <view class="about" data-id="1" catchtap="jumpabout">
-      <text>关于秋名山社</text>
-      <text class="icon-icon">></text>
-    </view>
-    <view class="question" data-id="2" catchtap="jumpabout">
-    <text>问题反馈</text>
-    <text class="icon-icon">></text>
-    </view>
+    <view class="btn"><button class="phone" type="primary"><span class="icon icon-104"></span>拨打电话</button></view>
+    <view class="btn"><button style="color: #179B16;" class="wechat" type="default"><icon type="download" size="20"></icon>添加微信</button></view>
   </view>
 </view>
