@@ -1,32 +1,22 @@
-/* pages/intro/intro.wxss */
+/* pages/about/about.wxss */
 .up{
-  height: 400rpx;
+  height: auto;
   text-align: center;
+  padding-top: 20rpx;
 }
-.icon-info{
-  width: 300rpx;
-  height: 300rpx;
-}
-.title{
-  width: 100%;
+.intro{
+  font-size: 30rpx;
+  color: #666
 }
 .down{
   width: 100%;
   text-align: center;
+  padding-top: 20px;
 }
-.about{
-  text-align: left;
-  height: 60rpx;
-  margin-left: 20rpx;
-  border-bottom: 1px aliceblue solid;
+.btn{
+  width: 98%;
+  margin: 1%;
 }
-.question{
-  text-align: left;
-  height: 60rpx;
-  margin-left: 20rpx;
-}
-.icon-icon{
-  position: absolute;
-  right: 10rpx;
-  color: lightgray;
+.wechat{
+  color: #179B16;
 }

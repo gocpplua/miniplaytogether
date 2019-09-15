@@ -1,11 +1,11 @@
 /* pages/about/about.wxss */
 .up{
   height: auto;
-  text-align: center;
+  text-align: left;
   padding-top: 20rpx;
 }
 .intro{
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #666
 }
 .down{
