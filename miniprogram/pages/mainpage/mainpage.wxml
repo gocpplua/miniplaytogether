@@ -9,6 +9,11 @@
   <swiper-item> <image src= '../../images/mainpage/正式上线啦.png' /> </swiper-item>
 </swiper>
 
+  <!--圆形点击框  -->
+<view class="round-click">
+   <button hover-class="none" open-type="contact" bindcontact="handleContact">客服</button>
+</view>
+
 <!-- 2019.08.11 start:军豪活动列表样式 -->
 <view class="contain">
   <view wx:for="{{ myActivitysInfo }}" >
@@ -34,8 +39,8 @@
       </view>
     </view>
   </view>
-  
-  
 </view>
 <!-- 2019.08.11 end:军豪活动列表样式 -->
+
+
 

@@ -68,3 +68,23 @@
   color: #666;
 }
 /* 2019.08.11 end:军豪活动列表样式 */
+
+.round-click{
+    height: 120rpx;
+    width: 120rpx;
+    background-color: #d92a2a;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 150rpx;
+    right: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+}
+.round-click button{
+    font-size: 28rpx;
+    max-width: 120rpx;
+    color: #fff;
+    text-align: center;
+}

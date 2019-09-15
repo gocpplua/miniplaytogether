@@ -158,5 +158,12 @@ Page({
         console.log(res)
       }
     })
+  },
+
+  // 客服
+  handleContact(e) {
+    console.log("handleContact");
+    console.log(e.detail.path)
+    console.log(e.detail.query)
   }
 })
