@@ -8,3 +8,6 @@
 - 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
 - 参考文档[云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+二、快速体验
+![image](http://github.com/gocpplua/miniplaytogether/tree/master/设计原型/二维码.jpg)
+
