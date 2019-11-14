@@ -9,5 +9,6 @@
 - 参考文档[云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
 二、快速体验
-![image](http://github.com/gocpplua/miniplaytogether/tree/master/设计原型/二维码.jpg)
+
+![image](![image](http://github.com/gocpplua/miniplaytogether/raw/master/设计原型/二维码.jpg))
 
