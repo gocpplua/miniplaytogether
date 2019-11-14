@@ -10,5 +10,5 @@
 
 二、快速体验
 
-![image](![image](http://github.com/gocpplua/miniplaytogether/raw/master/设计原型/二维码.jpg))
+![image](https://github.com/gocpplua/miniplaytogether/blob/master/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%9E%8B/%E4%BA%8C%E7%BB%B4%E7%A0%81.JPG)
 
